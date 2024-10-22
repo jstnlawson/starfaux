@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100svw;
+    height: 100svh;
+    background: #000;
+}
+
+.spaceship-container {
+    position: absolute;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    /* z-index: 1; */
+}
+
+.front-wing__left {
+    position: absolute;
+    left: -9vw;
+    top: .75vw;
+    width: 0px;
+   height: 0px;
+   border-style: solid;
+   border-width: 0 1.5vw 2.5vw 9vw;
+   border-color: transparent transparent blue transparent;
+   transform: rotate(65deg);
+}
+
+.front-wing__right {
+    position: absolute;
+    left: 3.5vw;
+    top: .75vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 2.5vw 1.5vw;
+    border-color: transparent transparent blue transparent;
+    transform: rotate(-65deg);
+}
+
+.body__left {
+    position: absolute;
+    left: -2.5vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 0 5vw 5vw;
+    border-color: transparent transparent #eee transparent;
+    transform: rotate(0deg);
+}
+
+.body__right {
+    position: absolute;
+    left: 2.5vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 5vw 0;
+    border-color: transparent transparent #ccc  transparent;
+    transform: rotate(0deg);
+}
