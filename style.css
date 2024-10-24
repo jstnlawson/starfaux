@@ -249,7 +249,13 @@ body {
             </div>
             <div class="enemy__right-wing"></div>
         </div> */
+
+
+
   .enemy-jet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     right: 0;
     top: 0;

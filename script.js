@@ -237,6 +237,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Toggle the side for the next laser
     lastLaserLeft = !lastLaserLeft;
+
+    // Get all child elements of enemyJet
+    const wings = [enemyJet.querySelector(".enemy__left-wing"), enemyJet.querySelector(".enemy__right-wing")];
+    const bodyTop = enemyJet.querySelector(".enemy__body__top");
+    const bodyBottom = enemyJet.querySelector(".enemy__body__bottom");
+
+    // Combine all elements for hit detection
+    const elementsToCheck = [...wings, bodyTop, bodyBottom];
+
+    // Check for overlaps with each inner element
+    for (const element of elementsToCheck) {
+        const elementRect = element.getBoundingClientRect();
+
+        if (isOverlapping(elementRect, gunSiteRect)) {
+            dodgeEnemyJet();
+            break; // Exit the loop once a hit is detected
+        }
+    }
+
+  }
+
+  // Function to check if two rectangles overlap
+function isOverlapping(rect1, rect2) {
+    return (
+      rect1.left < rect2.right &&
+      rect1.right > rect2.left &&
+      rect1.top < rect2.bottom &&
+      rect1.bottom > rect2.top
+    );
+  }
+  
+  // Function to dodge the enemy jet
+  function dodgeEnemyJet() {
+    // Logic for dodging behavior (move the enemy jet away)
+    const enemyJetRect = enemyJet.getBoundingClientRect();
+  
+    // Set dodge direction (you can modify this logic)
+    const dodgeDirection = Math.random() < 0.5 ? -1 : 1; // Randomly choose left or right
+  
+    // Update the enemy jet's position based on the dodge direction
+    enemyJet.style.left = (enemyJetRect.left + dodgeDirection * 20) + "px"; // Adjust dodge distance as needed
+    enemyJet.style.top = (enemyJetRect.top + dodgeDirection * 10) + "px"; // Adjust dodge distance as needed
   }
 
 });
