@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const spaceship = document.getElementById("spaceshipContainer");
+  const jet = document.getElementById("jetContainer");
   const engine = document.getElementsByClassName("engine")[0];
   const canvas = document.getElementById("gameCanvas");
   const groundMovement = document.getElementsByClassName("ground-movement")[0];
@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const backWingLeft = document.getElementsByClassName("back-wing__left")[0];
   const backWingRight = document.getElementsByClassName("back-wing__right")[0];
 
-  // Initial spaceship position in vw units
-  let spaceshipX = 50; // Start at center (50vw)
-  let spaceshipY = 50; // Start at center (50vh)
+  // Initial jet position in vw units
+  let jetX = 50; // Start at center (50vw)
+  let jetY = 50; // Start at center (50vh)
   let moveSpeed = 2; // Movement speed in vw
   let movingLeft = false;
   let movingRight = false;
@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let movingDown = false;
   let movingForward = false;
   let movingBackward = false;
+  let firingLaser = false;
 
   // Keydown event to start moving
   document.addEventListener("keydown", function (event) {
@@ -35,8 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nose.classList.add("nose--visible");
       backWingLeft.classList.add("back-wing__left--down");
       backWingRight.classList.add("back-wing__right--down");
-      console.log("Left Wing Classes:", backWingLeft.classList); // Log classes
-      console.log("Right Wing Classes:", backWingRight.classList);
+      engine.classList.add("engine--down");
     }
     if (event.key === "w") {
       movingForward = true;
@@ -47,6 +47,10 @@ document.addEventListener("DOMContentLoaded", function () {
       movingBackward = true;
       engine.classList.add("engine-slow");
       groundMovement.classList.add("ground-movement__slow");
+    }
+    if (event.key === " ") {
+      firingLaser = true;
+      fireLaserLoop();
     }
   });
 
@@ -67,8 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       nose.classList.remove("nose--visible");
       backWingLeft.classList.remove("back-wing__left--down");
       backWingRight.classList.remove("back-wing__right--down");
-      console.log("Left Wing Classes:", backWingLeft.classList); // Log classes
-      console.log("Right Wing Classes:", backWingRight.classList);
+      engine.classList.remove("engine--down");
     }
     if (event.key === "w") {
       movingForward = false;
@@ -80,26 +83,29 @@ document.addEventListener("DOMContentLoaded", function () {
       engine.classList.remove("engine-slow");
       groundMovement.classList.remove("ground-movement__slow");
     }
+    if (event.key === " ") {
+      firingLaser = false;
+    }
   });
 
   // Update function for smooth movement
   function update() {
-    // Update spaceship position
+    // Update jet position
     if (movingLeft) {
-      spaceshipX -= moveSpeed; // Move left
-      if (spaceshipX < 0) spaceshipX = 0; // Prevent going off the left side
+      jetX -= moveSpeed; // Move left
+      if (jetX < 0) jetX = 0; // Prevent going off the left side
     }
     if (movingRight) {
-      spaceshipX += moveSpeed; // Move right
-      if (spaceshipX > 100) spaceshipX = 100; // Prevent going off the right side
+      jetX += moveSpeed; // Move right
+      if (jetX > 100) jetX = 100; // Prevent going off the right side
     }
     if (movingUp) {
-      spaceshipY -= moveSpeed; // Move up
-      if (spaceshipY < 0) spaceshipY = 0; // Prevent going off the top
+      jetY -= moveSpeed; // Move up
+      if (jetY < 0) jetY = 0; // Prevent going off the top
     }
     if (movingDown) {
-      spaceshipY += moveSpeed; // Move down
-      if (spaceshipY > 100) spaceshipY = 100; // Prevent going off the bottom
+      jetY += moveSpeed; // Move down
+      if (jetY > 100) jetY = 100; // Prevent going off the bottom
     }
 
     // Start with default transformations
@@ -125,10 +131,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Combine transformations (scale + rotate)
     let transformString = `translate(-50%, -50%) scale(${scale}) rotate(${rotate}deg)`;
 
-    // Update the spaceship's position and transform
-    spaceship.style.left = spaceshipX + "vw";
-    spaceship.style.top = spaceshipY + "vh";
-    spaceship.style.transform = transformString; // Set the combined transformation
+    // Update the jet's position and transform
+    jet.style.left = jetX + "vw";
+    jet.style.top = jetY + "vh";
+    jet.style.transform = transformString; // Set the combined transformation
 
     requestAnimationFrame(update); // Continue updating
   }
@@ -140,96 +146,94 @@ document.addEventListener("DOMContentLoaded", function () {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   });
+  //});
+  //const horizontalOffset = lastLaserLeft ? -2.5 * window.innerWidth / 100 : 3.25 * window.innerWidth / 100; // Horizontal offset in vw
 
-  function createPillar() {
-    // Create a new pillar element
-    const pillar = document.createElement("div");
-    pillar.classList.add("pillar");
-
-    // Get a random x position between 0 and 100vw
-    let randomX = Math.random() * 100; // Random value between 0 and 100
-    pillar.style.left = randomX + "vw"; // Set the random x position
-
-    // Set initial scale and position (start at scale 0)
-    pillar.style.transform = "scale(0)";
-    pillar.style.bottom = "50vh";
-
-    // Append pillar to the game container
-    document.body.appendChild(pillar);
-
-    // Determine the direction and set the animation
-    let direction = "none";
-    if (randomX < 50) {
-      direction = "left"; // Move to the left
-    } else if (randomX > 50) {
-      direction = "right"; // Move to the right
-    } else {
-      direction = "straight"; // Stay straight if at center
+  //Fire laser continuously while spacebar is held down
+  function fireLaserLoop() {
+    if (firingLaser) {
+      fireLaser(); // Fire laser when the spacebar is held
     }
-
-    // Start the animation
-    animatePillar(pillar, direction);
+    setTimeout(fireLaserLoop, 200); // Fire every 200ms
   }
 
-  // Function to animate the pillar
-  function animatePillar(pillar, direction) {
-    let startY = 35; // Start from 50vh
-    let endY = -100; // End at 0vh (bottom of the screen)
-    let currentScale = 0; // Start at scale(0)
-    let scaleIncrement = 0.02; // Amount to scale per frame
-    let xMove = 0; // Horizontal movement adjustment
+  // Start the firing loop
+  //fireLaserLoop();
 
-    // Set xMove based on direction
-    if (direction === "left") {
-      xMove = -0.5; // Move left slightly each frame
-    }
-    if (direction === "right") {
-      xMove = 0.5; // Move right slightly each frame
-    } else if (direction === "straight") {
-      xMove = 0; // Don't move horizontally
-    }
+  let lastLaserLeft = true; // Track the last side fired from
 
-    // Update function to move and scale the pillar
-    function updatePillar() {
-      // startY -= 0.5; // Move down 1vh per frame
-      // currentScale += scaleIncrement; // Gradually increase scale
+  function fireLaser() {
+    // Create a new laser element
+    const laser = document.createElement("div");
+    laser.classList.add("laser");
 
-      let time = 0; // A variable to track how long the pillar has been moving
-      let duration = 2000; // Total duration of movement in milliseconds
-      let accelerationFactor = 0.05; // Adjust this value to control acceleration
-      let initialStartY = startY; // Save the starting position to calculate change
+    // Position the laser at the jet's location (front of the jet)
+    const jet = document.getElementById("jetContainer");
+    const gunSite = document.querySelector(".gun-site");
 
-      // Calculate the elapsed time as a fraction of the total duration
-      time += accelerationFactor; // Increment time
+    // Get jet and gun-site positions relative to the viewport
+    const jetRect = jet.getBoundingClientRect();
+    const gunSiteRect = gunSite.getBoundingClientRect();
 
-      // Use cubic easing-in for acceleration: starts slow, accelerates towards the end
-      let progress = time / duration; // A value from 0 to 1
-      let easeInProgress = progress ** 3; // Cubic easing-in (accelerates over time)
+    // Convert offsets to vw for dynamic sizing
+    const offsetLeft = 3; // 3vw for left laser offset
+    const offsetRight = 3; // 4vw for right laser offset
 
-      // Update the position based on easing (start slow, accelerate at the end)
-      startY = initialStartY - easeInProgress * (initialStartY - endY); // Calculate new position
+    // Calculate the starting position based on the last laser fired
+    const startX = lastLaserLeft
+      ? jetRect.left +
+        jetRect.width / 2 -
+        (offsetLeft * window.innerWidth) / 100
+      : jetRect.left +
+        jetRect.width / 2 +
+        (offsetRight * window.innerWidth) / 100;
 
-      currentScale += scaleIncrement; // Gradually increase scale
+    const startY = jetRect.top + jetRect.height / 2; // Center of the jet
 
-      // Update position and scale
-      pillar.style.bottom = startY + "vh";
-      pillar.style.transform = `scale(${currentScale})`;
+    // Set the laser position
+    laser.style.left = startX + "px";
+    laser.style.top = startY + "px";
 
-      // Move left or right based on direction
-      let currentX = parseFloat(pillar.style.left);
-      pillar.style.left = currentX + xMove + "vw";
+    // Append the laser to the body
+    document.body.appendChild(laser);
 
-      // Remove the pillar when it goes off-screen
-      if (startY <= endY) {
-        pillar.remove(); // Remove the element from the DOM
-      } else {
-        requestAnimationFrame(updatePillar); // Continue the animation
-      }
-    }
+    // Calculate the center of the gun site
+    //const gunSiteCenterX = gunSiteRect.left + (gunSiteRect.width / 2); // Adjust for the gun site width
+    const gunSiteCenterX =
+      gunSiteRect.left +
+      gunSiteRect.width / 2 +
+      (-1.45 * window.innerWidth) / 100;
+    const gunSiteCenterY = gunSiteRect.top + gunSiteRect.height / 2;
 
-    requestAnimationFrame(updatePillar);
+    // Debugging output
+    console.log("Start Position:", startX, startY);
+    console.log("Gun Site Center:", gunSiteCenterX, gunSiteCenterY);
+
+    // Calculate the angle to the gun-site
+    const deltaX = gunSiteCenterX - startX; // Calculate difference in X
+    const deltaY = gunSiteCenterY - startY; // Calculate difference in Y
+    const angle = (Math.atan2(deltaY, deltaX) * 180) / Math.PI; // Calculate the angle to the target
+
+    // Set the laser angle
+    laser.style.transform = `rotate(${angle}deg)`;
+
+    // Animate the laser to move towards the gun-site and shrink
+    setTimeout(() => {
+      // Move the laser to the gun-site
+      laser.style.left = gunSiteCenterX + "px"; // Center the laser on the gun-site
+      laser.style.top = gunSiteCenterY + "px";
+
+      // Shrink the laser as it moves
+      laser.style.transform += " scale(0.15)";
+
+      // Remove the laser from the DOM after the animation
+      setTimeout(() => {
+        laser.remove();
+      }, 450); // Match this with the transition duration
+    }, 10); // Start the animation slightly after placement
+
+    // Toggle the side for the next laser
+    lastLaserLeft = !lastLaserLeft;
   }
 
-  // Spawn pillars every few seconds for demonstration
-  setInterval(createPillar, 3000); // Adjust interval as needed
 });

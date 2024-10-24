@@ -52,14 +52,14 @@ body {
 
 .pillar {
     position: absolute;
-    bottom: 50vh;
-    width: 15vw;
-    height: 30vh;
+    /* bottom: 50vh; */
+    width: 20vw;
+    height: 50vh;
     background: linear-gradient(to right, #333, #999, #ccc 35%, #ccc 65%, #999, #333);
     z-index: 0;
 }
 
-.spaceship-container {
+.jet-container {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -73,6 +73,17 @@ body {
     z-index: 1;
 }
 
+.gun-site {
+    position: absolute;
+    left: 2.5vw;
+    top: -15vh;
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    width: 1vw;
+    height: 1vw;
+    background: #f96d7880;
+}
+
 .nose {
     position: absolute;
     left: -2.5vw;
@@ -80,7 +91,7 @@ body {
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 3vw 5vw 0 5vw;
+    border-width: 2vw 5vw 0 5vw;
     border-color: #bbb transparent transparent transparent;
     transform: rotate(0deg);
     opacity: 0;
@@ -158,7 +169,7 @@ body {
 
 .body__left {
     position: absolute;
-    left: -2.5vw;
+    left: -2.45vw;
     width: 0px;
     height: 0px;
     border-style: solid;
@@ -169,7 +180,7 @@ body {
 
 .body__right {
     position: absolute;
-    left: 2.5vw;
+    left: 2.45vw;
     width: 0px;
     height: 0px;
     border-style: solid;
@@ -182,6 +193,7 @@ body {
     position: absolute;
     left: -2.5vw;
     top: 3.5vw;
+    
     width: 0px;
     height: 0px;
     border-style: solid;
@@ -189,6 +201,7 @@ body {
     border-color: transparent transparent #f96d78 transparent;
     transform: rotate(0deg);
     box-shadow: 0 2px 0 0 #f96d7951;
+    
 }
 
 .engine-boost {
@@ -200,3 +213,122 @@ body {
     border-color: transparent transparent #df424f transparent;
     box-shadow: 0 4px 0 0 #df424f51;
 }
+
+.engine--down {
+    top: 2.5vw;
+    border-width: 0 5vw 2.5vw 5vw; 
+    top: 3vw;
+    border-width: 0 5vw 2vw 5vw; 
+}
+
+.laser {
+    position: absolute;
+    width: 3vw;
+    height: 1vh;
+    border-radius: 25%;
+    background: linear-gradient(to right, #f96d78, #fff);
+    transform-origin: center;
+    transform: scale(1);
+    transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
+  }
+  
+  /* <div class="enemy-jet">
+            <div class="enemy__left-wing"></div>
+            <div class="enemy__body-container">
+                <div class="enemy__body__top"></div>
+                <div class="enemy__body__bottom"></div>
+            </div>
+            <div class="enemy__right-wing"></div>
+        </div> */
+  .enemy-jet {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    animation: moveJet 5s forwards ease-out;
+    z-index: 0;
+    transform: translate(0, 0) scale(0) rotate(0deg);
+  }
+
+  @keyframes moveJet {
+    0% {
+      top: 0;
+      right: 0;
+    transform: translate(0, 0) scale(0) rotate(-45deg); /* Start at 0.1 scale */
+    }
+    75% {
+      
+      transform: translate(37.5%, -37.5%) scale(0.075) rotate(15deg); /* Scale to 1 */
+    }
+    100% {
+      top: 40%;
+      right: 50%;
+      transform: translate(50%, -50%) scale(0.1) rotate(0deg); /* Stay at 0.1 scale */
+    }
+  }
+
+    .enemy__left-wing {
+        position: absolute;
+        left: -28vw;
+        top: -2vw;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 4vw 5vw 0 15vw;
+        border-color:  #444 transparent transparent transparent;
+        transform: rotate(16deg);
+    }
+
+    .enemy__right-wing {
+        position: absolute;
+        left: 8vw;
+        top: -2vw;
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 4vw 15vw 0 5vw;
+        border-color:  #444 transparent transparent transparent;
+        transform: rotate(-16deg);
+    }
+
+    .enemy__body-container {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enemy__body__top {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 0 9vw 5vw 9vw;
+        border-color: transparent transparent #444 transparent;
+        transform: rotate(0deg);
+    }
+
+    .enemy__body__bottom {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 0 9vw 3vw 9vw;
+        border-color: transparent transparent #333 transparent;
+        transform: rotate(180deg);
+    }
+
+    .enemy-laser {
+        position: absolute;
+        width: 3vw;
+        height: 1vh;
+        border-radius: 25%;
+        background: linear-gradient(to right, #e26df9, #fff);
+        transform-origin: center;
+        transform: scale(1);
+        transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
+      }
+
