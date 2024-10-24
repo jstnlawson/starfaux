@@ -1,11 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   const jet = document.getElementById("jetContainer");
+  const enemyJet = document.getElementById("enemyJet");
   const engine = document.getElementsByClassName("engine")[0];
   const canvas = document.getElementById("gameCanvas");
   const groundMovement = document.getElementsByClassName("ground-movement")[0];
   const nose = document.getElementsByClassName("nose")[0];
   const backWingLeft = document.getElementsByClassName("back-wing__left")[0];
   const backWingRight = document.getElementsByClassName("back-wing__right")[0];
+  const laser = document.getElementsByClassName("laser")[0];
 
   // Initial jet position in vw units
   let jetX = 50; // Start at center (50vw)
@@ -87,6 +89,7 @@ document.addEventListener("DOMContentLoaded", function () {
       firingLaser = false;
     }
   });
+  
 
   // Update function for smooth movement
   function update() {
@@ -176,8 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const gunSiteRect = gunSite.getBoundingClientRect();
 
     // Convert offsets to vw for dynamic sizing
-    const offsetLeft = 3; // 3vw for left laser offset
-    const offsetRight = 3; // 4vw for right laser offset
+    const offsetLeft = 4; // 3vw for left laser offset
+    const offsetRight = 1; // 4vw for right laser offset
 
     // Calculate the starting position based on the last laser fired
     const startX = lastLaserLeft
