@@ -30,7 +30,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   jetEntrance();
 
-
+//log jet's translate, scale, rotate
+console.log(window.getComputedStyle(jet).transform);
 
   // Keydown event to start moving
   document.addEventListener("keydown", function (event) {
@@ -372,7 +373,7 @@ function startShooting() {
 }
 
 // Call this function after the enemy jet entrance
-startShooting();
+// startShooting();
 
 
 
