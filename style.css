@@ -73,7 +73,7 @@ body {
     /* transform: rotate(0deg); */
     transition: transform 0.3s ease;
     /* Adjust duration as needed */
-    z-index: 1;
+    z-index: 2;
 }
 
 .gun-site {
@@ -250,8 +250,6 @@ body {
             <div class="enemy__right-wing"></div>
         </div> */
 
-
-
   .enemy-jet {
     display: flex;
     justify-content: center;
@@ -259,32 +257,51 @@ body {
     position: absolute;
     right: 0;
     top: 0;
+    top: 38.5%;
+    right: 50%;
+    transform: translate(50%, -50%) scale(0.1) rotate(0deg);
     display: flex;
     justify-content: center;
     align-items: center;
     width: fit-content;
     height: fit-content;
-    animation: moveJet 5s forwards ease-out;
     z-index: 0;
-    transform: translate(0, 0) scale(0) rotate(0deg);
+    transition: transform 0.3s ease;
   }
 
-  @keyframes moveJet {
+  .jet-entrance-one {
+    animation: jetEntranceOneAnimation 30s forwards ease-out;
+  }
+
+  @keyframes jetEntranceOneAnimation {
     0% {
       top: 0;
       right: 0;
-    transform: translate(0, 0) scale(0) rotate(-45deg); /* Start at 0.1 scale */
+    transform: translate(0, 0) scale(0) rotate(-45deg); 
     }
-    75% {
+    10% {
       
-      transform: translate(37.5%, -37.5%) scale(0.075) rotate(15deg); /* Scale to 1 */
+      transform: translate(37.5%, -37.5%) scale(0.075) rotate(15deg); 
     }
-    100% {
+    20% {
       top: 38.5%;
       right: 50%;
-      transform: translate(50%, -50%) scale(0.1) rotate(0deg); /* Stay at 0.1 scale */
+      transform: translate(50%, -50%) scale(0.1) rotate(-10deg); 
+    }
+    30% {
+      top: 38.5%;
+      right: 60%;
+      transform: translate(50%, -50%) scale(0.125) rotate(0deg); 
+    }
+    40% {
+      top: 38.5%;
+      right: 55%;
+      transform: translate(50%, -50%) scale(1) rotate(0deg); 
     }
   }
+
+  
+
 
     .enemy__left-wing {
         position: absolute;
@@ -339,11 +356,12 @@ body {
     .enemy-laser {
         position: absolute;
         width: 3vw;
-        height: 1vh;
-        border-radius: 25%;
+        height: 3vw;
+        border-radius: 50%;
         background: linear-gradient(to right, #e26df9, #fff);
         transform-origin: center;
         transform: scale(1);
         transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
+        z-index: 1;
       }
 

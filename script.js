@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   const jet = document.getElementById("jetContainer");
-  const enemyJet = document.getElementById("enemyJet");
+  const enemyJet = document.getElementsByClassName("enemy-jet")[0];
+  const enemyJetWrapper = document.getElementsByClassName("enemy-jet-wrapper")[0];
   const engine = document.getElementsByClassName("engine")[0];
   const canvas = document.getElementById("gameCanvas");
   const groundMovement = document.getElementsByClassName("ground-movement")[0];
@@ -8,11 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const backWingLeft = document.getElementsByClassName("back-wing__left")[0];
   const backWingRight = document.getElementsByClassName("back-wing__right")[0];
   const laser = document.getElementsByClassName("laser")[0];
+//   const enemyLaser = document.getElementsByClassName("enemy-laser")[0];
 
   // Initial jet position in vw units
   let jetX = 50; // Start at center (50vw)
   let jetY = 50; // Start at center (50vh)
-  let moveSpeed = 2; // Movement speed in vw
+  let moveSpeed = 0.5; // Movement speed in vw
   let movingLeft = false;
   let movingRight = false;
   let movingUp = false;
@@ -20,6 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
   let movingForward = false;
   let movingBackward = false;
   let firingLaser = false;
+
+  function jetEntrance() {
+    enemyJet.classList.add("jet-entrance-one");
+   
+  }
+
+  jetEntrance();
+
+
 
   // Keydown event to start moving
   document.addEventListener("keydown", function (event) {
@@ -44,11 +55,13 @@ document.addEventListener("DOMContentLoaded", function () {
       movingForward = true;
       engine.classList.add("engine-boost");
       groundMovement.classList.add("ground-movement__fast");
+      moveSpeed = 1.5; // Increase movement speed
     }
     if (event.key === "s") {
       movingBackward = true;
       engine.classList.add("engine-slow");
       groundMovement.classList.add("ground-movement__slow");
+      moveSpeed = 0.25; // Decrease movement speed
     }
     if (event.key === " ") {
       firingLaser = true;
@@ -79,17 +92,18 @@ document.addEventListener("DOMContentLoaded", function () {
       movingForward = false;
       engine.classList.remove("engine-boost");
       groundMovement.classList.remove("ground-movement__fast");
+        moveSpeed = 0.5; // Reset movement speed
     }
     if (event.key === "s") {
       movingBackward = false;
       engine.classList.remove("engine-slow");
       groundMovement.classList.remove("ground-movement__slow");
+      moveSpeed = 0.5; // Reset movement speed
     }
     if (event.key === " ") {
       firingLaser = false;
     }
   });
-  
 
   // Update function for smooth movement
   function update() {
@@ -239,7 +253,10 @@ document.addEventListener("DOMContentLoaded", function () {
     lastLaserLeft = !lastLaserLeft;
 
     // Get all child elements of enemyJet
-    const wings = [enemyJet.querySelector(".enemy__left-wing"), enemyJet.querySelector(".enemy__right-wing")];
+    const wings = [
+      enemyJet.querySelector(".enemy__left-wing"),
+      enemyJet.querySelector(".enemy__right-wing"),
+    ];
     const bodyTop = enemyJet.querySelector(".enemy__body__top");
     const bodyBottom = enemyJet.querySelector(".enemy__body__bottom");
 
@@ -248,18 +265,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Check for overlaps with each inner element
     for (const element of elementsToCheck) {
-        const elementRect = element.getBoundingClientRect();
+      const elementRect = element.getBoundingClientRect();
 
-        if (isOverlapping(elementRect, gunSiteRect)) {
-            dodgeEnemyJet();
-            break; // Exit the loop once a hit is detected
-        }
+      if (isOverlapping(elementRect, gunSiteRect)) {
+        dodgeEnemyJet();
+        break; // Exit the loop once a hit is detected
+      }
     }
-
   }
 
   // Function to check if two rectangles overlap
-function isOverlapping(rect1, rect2) {
+  function isOverlapping(rect1, rect2) {
     return (
       rect1.left < rect2.right &&
       rect1.right > rect2.left &&
@@ -267,18 +283,98 @@ function isOverlapping(rect1, rect2) {
       rect1.bottom > rect2.top
     );
   }
-  
-  // Function to dodge the enemy jet
-  function dodgeEnemyJet() {
-    // Logic for dodging behavior (move the enemy jet away)
-    const enemyJetRect = enemyJet.getBoundingClientRect();
-  
-    // Set dodge direction (you can modify this logic)
-    const dodgeDirection = Math.random() < 0.5 ? -1 : 1; // Randomly choose left or right
-  
-    // Update the enemy jet's position based on the dodge direction
-    enemyJet.style.left = (enemyJetRect.left + dodgeDirection * 20) + "px"; // Adjust dodge distance as needed
-    enemyJet.style.top = (enemyJetRect.top + dodgeDirection * 10) + "px"; // Adjust dodge distance as needed
-  }
+
+  // Keep track of the current dodge position
+let currentDodgeX = 0;
+let currentDodgeY = 0;
+
+function dodgeEnemyJet() {
+    // Randomly choose dodge direction and calculate movement distance
+    const dodgeDirection = Math.random() < 0.5 ? -1 : 1;
+    const dodgeDistanceX = dodgeDirection * 20; // Adjust dodge distance as needed
+    const dodgeDistanceY = dodgeDirection * 10; // Adjust dodge distance as needed
+
+    // Update the current dodge position based on calculated movement
+    currentDodgeX += dodgeDistanceX;
+    currentDodgeY += dodgeDistanceY;
+
+    // Apply smooth translation
+    enemyJet.style.transform = `translate(${currentDodgeX}px, ${currentDodgeY}px)`;
+}
+
+const enemyLaser = document.createElement("div");
+enemyLaser.classList.add("enemy-laser");
+enemyLaser.style.visibility = 'hidden'; // Initially hidden
+document.body.appendChild(enemyLaser); // Append it to the body
+
+function calculateAngle(laserPos, jetPos) {
+    const deltaX = jetPos.x - laserPos.x;
+    const deltaY = jetPos.y - laserPos.y;
+    return Math.atan2(deltaY, deltaX) * (180 / Math.PI); // Convert radians to degrees
+}
+
+function shootLaser() {
+    if (!enemyLaser) {
+        console.error("enemyLaser is not defined.");
+        return; // Prevents the error if enemyLaser isn't created yet
+    }
+    
+    // Get positions of the enemy jet and target jet
+    const enemyJetRect = enemyJet.getBoundingClientRect(); // Rect for enemy jet
+    const targetJetRect = jet.getBoundingClientRect(); // Rect for target jet (assuming targetJet is defined)
+
+    const laserPos = {
+        x: enemyJetRect.left + enemyJetRect.width / 2, // Center of the enemy jet
+        y: enemyJetRect.bottom, // Bottom of the enemy jet
+    };
+
+    const jetPos = {
+        x: targetJetRect.left + targetJetRect.width / 2, // Center of the target jet
+        y: targetJetRect.top + targetJetRect.height / 2, // Center of the target jet
+    };
+
+    // Calculate angle to rotate laser
+    const angle = calculateAngle(laserPos, jetPos);
+
+    // Position and animate the laser
+    enemyLaser.style.transform = `rotate(${angle}deg)`;
+    enemyLaser.style.left = `${laserPos.x}px`;
+    enemyLaser.style.top = `${laserPos.y}px`;
+    enemyLaser.style.visibility = 'visible'; // Make the laser visible
+
+    // Move the laser towards the target jet
+    const distance = Math.sqrt(Math.pow(jetPos.x - laserPos.x, 2) + Math.pow(jetPos.y - laserPos.y, 2));
+    const laserSpeed = 400; // Speed of the laser in pixels per second
+    const duration = distance / laserSpeed * 1000; // Duration in milliseconds
+
+    // Animate the laser movement
+    enemyLaser.animate([
+        { transform: `translateY(0)`, opacity: 1 },
+        { transform: `translate(${jetPos.x - laserPos.x}px, ${jetPos.y - laserPos.y}px)`, opacity: 0 },
+    ], {
+        duration: duration,
+        easing: 'linear',
+        fill: 'forwards',
+    });
+
+    // Hide the laser after animation completes
+    setTimeout(() => {
+        enemyLaser.style.visibility = 'hidden';
+    }, duration);
+}
+
+function startShooting() {
+    setTimeout(() => {
+        shootLaser(); // Shoot immediately after 3 seconds
+        const randomInterval = Math.floor(Math.random() * 3000) + 1000; // Random between 1 to 5 seconds
+        setInterval(shootLaser, randomInterval); // Repeat every random interval
+    }, 10000); // Start after 3 seconds
+}
+
+// Call this function after the enemy jet entrance
+startShooting();
+
+
+
 
 });
