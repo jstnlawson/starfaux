@@ -344,13 +344,13 @@ function shootLaser() {
 
     // Move the laser towards the target jet
     const distance = Math.sqrt(Math.pow(jetPos.x - laserPos.x, 2) + Math.pow(jetPos.y - laserPos.y, 2));
-    const laserSpeed = 400; // Speed of the laser in pixels per second
+    const laserSpeed = 300; // Speed of the laser in pixels per second
     const duration = distance / laserSpeed * 1000; // Duration in milliseconds
 
     // Animate the laser movement
     enemyLaser.animate([
-        { transform: `translateY(0)`, opacity: 1 },
-        { transform: `translate(${jetPos.x - laserPos.x}px, ${jetPos.y - laserPos.y}px)`, opacity: 0 },
+        { transform: `translateY(0)`, opacity: 1, scale: 0 },
+        { transform: `translate(${jetPos.x - laserPos.x}px, ${jetPos.y - laserPos.y}px)`, opacity: 0.5, scale: 2 },
     ], {
         duration: duration,
         easing: 'linear',
