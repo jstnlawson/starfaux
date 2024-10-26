@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function jetEntrance() {
     enemyJet.classList.add("jet-entrance-one");
-   
   }
 
   jetEntrance();

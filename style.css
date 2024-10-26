@@ -270,109 +270,39 @@ body {
   }
 
   .jet-entrance-one {
-    animation: jetEntranceOneAnimation 60s forwards ease-out;
+    /* animation: jetEntranceOneAnimation 30s forwards ease-out; */
+    animation: jetEntranceOneAnimation 15s forwards cubic-bezier(0.42, 0, 0.58, 1); /* Smooth custom easing */
+
   }
 
   @keyframes jetEntranceOneAnimation {
     0% {
       top: 0;
       right: 0;
-    transform: scale(0) rotate(-45deg); 
+    transform: scale(0) rotate(-90deg); 
     }
-    10% {
+    /* 10% {
       
-      transform: scale(0.075) rotate(35deg); 
+      transform: scale(0.075) rotate(75deg); 
+    } */
+    
+   
+    50% {
+       top: 25%;
+        right: 90%;
+      transform: scale(0.075) rotate(75deg);
     }
-    15% {
-      right: 85%;
-      transform: scale(0.125) rotate(75deg); 
-    }
-    20% {
-       
-        right: 80%;
-      transform: scale(0.175) rotate(45deg);
-    }
-    25% {
-        
-       right: 75%;
-        transform: scale(0.225) rotate(15deg); 
-    }
-    30% {
-       right: 75%;
-        transform: scale(0.25) rotate(0deg); 
-    }
-
-    35% {
-        
-        transform: scale(0.25) rotate(15deg); 
-    }
-
-    40% {
-        right: 15%;
+   
+    75% {
+        top: 50%;
+       right: 10%;
         transform: scale(0.25) rotate(-75deg); 
     }
 
-    45% {
-        
-        transform: scale(0.25) rotate(0deg); 
-    }
-
-    50% {
-        
-        transform: scale(0.275) rotate(0deg); 
-    }
-
-    55% {
-        
-        transform: scale(0.3) rotate(0deg); 
-    }
-
-    60% {
-        
-        transform: scale(0.325) rotate(0deg); 
-    }
-
-    65% {
-        
-        
-        transform: scale(0.35) rotate(0deg); 
-    }
-
-    70% {
-        
-        transform: scale(0.375) rotate(0deg); 
-    }
-
-    75% {
-        
-        transform: scale(0.4) rotate(0deg); 
-    }
-
-    80% {
-        top: 80%;
-        right: 25%;
-        transform: scale(0.425) rotate(0deg); 
-    }
-
-    85% {
-        
-        transform: scale(0.45) rotate(0deg); 
-    }
-
-    90% {
-        
-        transform: scale(0.475) rotate(0deg); 
-    }
-
-    95% {
-        
-        transform: scale(0.5) rotate(0deg); 
-    }
-
     100% {
-        top: 100%;
-        right: 100%;
-        transform: scale(0.525) rotate(0deg); 
+        top: 120%;
+        right: 120%;
+        transform: scale(1) rotate(75deg); 
     }
   }
 
