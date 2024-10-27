@@ -26,8 +26,10 @@ body {
     background-size: 100% 200%;
     background-position: 0 100%;
     /* Start from the top */
-    animation: scrollGround 1s linear infinite;
+    animation: scrollGround 1s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
 }
+
+/* I use cubic-bezier instead of "linear" because it just looks a little smoother */
 
 @keyframes scrollGround {
     0% {
@@ -43,11 +45,11 @@ body {
 }
 
 .ground-movement__fast {
-    animation: scrollGround 0.5s linear infinite;
+    animation: scrollGround 0.5s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
 }
 
 .ground-movement__slow {
-    animation: scrollGround 2s linear infinite;
+    animation: scrollGround 2s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
 }
 
 .pillar {
@@ -89,22 +91,23 @@ body {
 
 .nose {
     position: absolute;
-    left: -2.5vw;
+    left: 0;
     top: 5vw;
     width: 0px;
     height: 0px;
     border-style: solid;
-    border-width: 2vw 5vw 0 5vw;
+    border-width: .25vw 5vw 0 5vw;
     border-color: #bbb transparent transparent transparent;
     transform: rotate(0deg);
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     transition: opacity 0.1s ease, visibility 0.1s ease;
 }
 
 .nose--visible {
     opacity: 1;
     visibility: visible;
+    border-width: .75vw 5vw 0 5vw;
 }
 
 .front-wing__left {
@@ -281,12 +284,7 @@ body {
       right: 0;
     transform: scale(0) rotate(-90deg); 
     }
-    /* 10% {
-      
-      transform: scale(0.075) rotate(75deg); 
-    } */
-    
-   
+
     50% {
        top: 25%;
         right: 90%;
@@ -302,7 +300,7 @@ body {
     100% {
         top: 120%;
         right: 120%;
-        transform: scale(1) rotate(75deg); 
+        transform: scale(2) rotate(75deg); 
     }
   }
 

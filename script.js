@@ -23,11 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let movingBackward = false;
   let firingLaser = false;
 
-  function jetEntrance() {
-    enemyJet.classList.add("jet-entrance-one");
-  }
+//   function jetEntrance() {
+//     enemyJet.classList.add("jet-entrance-one");
+//   }
 
-  jetEntrance();
+//   jetEntrance();
 
 //log jet's translate, scale, rotate
 console.log(window.getComputedStyle(jet).transform);
@@ -314,67 +314,152 @@ function calculateAngle(laserPos, jetPos) {
 }
 
 function shootLaser() {
-    if (!enemyLaser) {
-        console.error("enemyLaser is not defined.");
-        return; // Prevents the error if enemyLaser isn't created yet
-    }
-    
-    // Get positions of the enemy jet and target jet
-    const enemyJetRect = enemyJet.getBoundingClientRect(); // Rect for enemy jet
-    const targetJetRect = jet.getBoundingClientRect(); // Rect for target jet (assuming targetJet is defined)
+    const newLaser = document.createElement("div");
+    newLaser.classList.add("enemy-laser");
+    document.body.appendChild(newLaser);
+
+    const enemyJetRect = enemyJet.getBoundingClientRect();
+    const targetJetRect = jet.getBoundingClientRect();
 
     const laserPos = {
-        x: enemyJetRect.left + enemyJetRect.width / 2, // Center of the enemy jet
-        y: enemyJetRect.bottom, // Bottom of the enemy jet
+        x: enemyJetRect.left + enemyJetRect.width / 2,
+        y: enemyJetRect.bottom,
     };
 
     const jetPos = {
-        x: targetJetRect.left + targetJetRect.width / 2, // Center of the target jet
-        y: targetJetRect.top + targetJetRect.height / 2, // Center of the target jet
+        x: targetJetRect.left + targetJetRect.width / 2,
+        y: targetJetRect.top + targetJetRect.height / 2,
     };
 
-    // Calculate angle to rotate laser
     const angle = calculateAngle(laserPos, jetPos);
+    newLaser.style.transform = `rotate(${angle}deg)`;
+    newLaser.style.left = `${laserPos.x}px`;
+    newLaser.style.top = `${laserPos.y}px`;
+    newLaser.style.visibility = 'visible';
 
-    // Position and animate the laser
-    enemyLaser.style.transform = `rotate(${angle}deg)`;
-    enemyLaser.style.left = `${laserPos.x}px`;
-    enemyLaser.style.top = `${laserPos.y}px`;
-    enemyLaser.style.visibility = 'visible'; // Make the laser visible
+    const offScreenDistance = 1.5 * Math.max(window.innerWidth, window.innerHeight);
+    const endX = laserPos.x + offScreenDistance * Math.cos(angle * Math.PI / 180);
+    const endY = laserPos.y + offScreenDistance * Math.sin(angle * Math.PI / 180);
 
-    // Move the laser towards the target jet
-    const distance = Math.sqrt(Math.pow(jetPos.x - laserPos.x, 2) + Math.pow(jetPos.y - laserPos.y, 2));
-    const laserSpeed = 300; // Speed of the laser in pixels per second
-    const duration = distance / laserSpeed * 1000; // Duration in milliseconds
+    const laserSpeed = 800;
+    const duration = (offScreenDistance / laserSpeed) * 1000;
 
-    // Animate the laser movement
-    enemyLaser.animate([
+    const laserAnimation = newLaser.animate([
         { transform: `translateY(0)`, opacity: 1, scale: 0 },
-        { transform: `translate(${jetPos.x - laserPos.x}px, ${jetPos.y - laserPos.y}px)`, opacity: 0.5, scale: 2 },
+        { transform: `translate(${endX - laserPos.x}px, ${endY - laserPos.y}px)`, opacity: 1, scale: 2 },
     ], {
         duration: duration,
         easing: 'linear',
         fill: 'forwards',
     });
 
-    // Hide the laser after animation completes
+    // Check for collision during the animation
+    const checkCollision = setInterval(() => {
+        const laserRect = newLaser.getBoundingClientRect();
+        const hit = isColliding(laserRect, targetJetRect);
+        
+        if (hit) {
+            // Handle hit logic here (e.g., remove laser, trigger effects)
+            console.log("Laser hit the jet!");
+            newLaser.remove(); // Remove the laser element
+            clearInterval(checkCollision); // Stop checking for collision
+        }
+    }, 50); // Check every 50ms
+
+    // Remove the laser after animation completes if it hasn't hit anything
     setTimeout(() => {
-        enemyLaser.style.visibility = 'hidden';
+        if (!newLaser.isConnected) return; // Check if laser is already removed
+        newLaser.remove();
+        clearInterval(checkCollision); // Stop checking for collision
     }, duration);
 }
 
-function startShooting() {
-    setTimeout(() => {
-        shootLaser(); // Shoot immediately after 3 seconds
-        const randomInterval = Math.floor(Math.random() * 3000) + 1000; // Random between 1 to 5 seconds
-        setInterval(shootLaser, randomInterval); // Repeat every random interval
-    }, 10000); // Start after 3 seconds
+// Function to check collision between two rectangles
+function isColliding(rect1, rect2) {
+    return !(
+        rect1.right < rect2.left ||
+        rect1.left > rect2.right ||
+        rect1.bottom < rect2.top ||
+        rect1.top > rect2.bottom
+    );
 }
 
-// Call this function after the enemy jet entrance
-// startShooting();
 
+// function shootLaser() {
+//     const newLaser = document.createElement("div");
+//     newLaser.classList.add("enemy-laser");
+//     document.body.appendChild(newLaser);
 
+//     const enemyJetRect = enemyJet.getBoundingClientRect();
+//     const targetJetRect = jet.getBoundingClientRect();
+
+//     const laserPos = {
+//         x: enemyJetRect.left + enemyJetRect.width / 2,
+//         y: enemyJetRect.bottom,
+//     };
+
+//     const jetPos = {
+//         x: targetJetRect.left + targetJetRect.width / 2,
+//         y: targetJetRect.top + targetJetRect.height / 2,
+//     };
+
+//     const angle = calculateAngle(laserPos, jetPos);
+//     newLaser.style.transform = `rotate(${angle}deg)`;
+//     newLaser.style.left = `${laserPos.x}px`;
+//     newLaser.style.top = `${laserPos.y}px`;
+//     newLaser.style.visibility = 'visible';
+
+//     // Extended distance beyond the target to ensure it goes off-screen
+//     const offScreenDistance = 1.5 * Math.max(window.innerWidth, window.innerHeight);
+
+//     // Calculate extended endpoint for laser
+//     const endX = laserPos.x + offScreenDistance * Math.cos(angle * Math.PI / 180);
+//     const endY = laserPos.y + offScreenDistance * Math.sin(angle * Math.PI / 180);
+
+//     // Calculate the animation duration for the extended distance
+//     const laserSpeed = 800;
+//     const duration = (offScreenDistance / laserSpeed) * 1000;
+
+//     // Animate the laser movement beyond the target
+//     newLaser.animate([
+//         { transform: `translateY(0)`, opacity: 1, scale: 0 },
+//         { transform: `translate(${endX - laserPos.x}px, ${endY - laserPos.y}px)`, opacity: 1, scale: 4 },
+//     ], {
+//         duration: duration,
+//         easing: 'linear',
+//         fill: 'forwards',
+//     });
+
+//     // Remove the laser element after it goes off-screen
+//     setTimeout(() => {
+//         newLaser.remove();
+//     }, duration);
+// }
+
+function startJetAndLaserSequence() {
+    enemyJet.classList.add("jet-entrance-one");
+
+    enemyJet.addEventListener("animationstart", () => {
+        const checkpoints = [
+            { time: 0.45, fired: false },
+            { time: 0.5, fired: false },
+            { time: 0.65, fired: false },
+            { time: 0.7, fired: false },
+            
+        ];
+
+        checkpoints.forEach(checkpoint => {
+            const duration = parseFloat(getComputedStyle(enemyJet).animationDuration) * 1000;
+            const checkpointTime = checkpoint.time * duration;
+
+            setTimeout(() => {
+                shootLaser();
+            }, checkpointTime);
+        });
+    }, { once: true });
+}
+
+startJetAndLaserSequence();
 
 
 });
