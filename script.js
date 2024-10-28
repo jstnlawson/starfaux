@@ -257,6 +257,8 @@ console.log(window.getComputedStyle(jet).transform);
       enemyJet.querySelector(".enemy__left-wing"),
       enemyJet.querySelector(".enemy__right-wing"),
     ];
+    const leftWing = enemyJet.querySelector(".enemy__left-wing");
+    const rightWing = enemyJet.querySelector(".enemy__right-wing");
     const bodyTop = enemyJet.querySelector(".enemy__body__top");
     const bodyBottom = enemyJet.querySelector(".enemy__body__bottom");
 
@@ -268,7 +270,24 @@ console.log(window.getComputedStyle(jet).transform);
       const elementRect = element.getBoundingClientRect();
 
       if (isOverlapping(elementRect, gunSiteRect)) {
-        dodgeEnemyJet();
+        if (element === bodyTop) {
+            bodyTop.classList.add("body-top--hit");
+        }
+        if (element === bodyBottom) {
+            bodyBottom.classList.add("body-bottom--hit");
+        }
+        if (element === leftWing) {
+            leftWing.classList.add("left-wing--hit");
+        }
+        if (element === rightWing) {
+            rightWing.classList.add("right-wing--hit");
+        }
+        setTimeout(() => {
+            bodyTop.classList.remove("body-top--hit");
+            bodyBottom.classList.remove("body-bottom--hit");
+            leftWing.classList.remove("left-wing--hit");
+            rightWing.classList.remove("right-wing--hit");
+        }, 500); // Reset hit state after 1.5s
         break; // Exit the loop once a hit is detected
       }
     }
@@ -363,8 +382,12 @@ function shootLaser() {
             console.log("Laser hit the jet!");
             newLaser.remove(); // Remove the laser element
             clearInterval(checkCollision); // Stop checking for collision
+            jet.classList.add("user-hit");
+            setTimeout(() => {
+                jet.classList.remove("user-hit");
+            }, 1500); // Reset hit state after 1.5s
         }
-    }, 50); // Check every 50ms
+    }, 10); // Check every 50ms
 
     // Remove the laser after animation completes if it hasn't hit anything
     setTimeout(() => {
@@ -384,67 +407,18 @@ function isColliding(rect1, rect2) {
     );
 }
 
-
-// function shootLaser() {
-//     const newLaser = document.createElement("div");
-//     newLaser.classList.add("enemy-laser");
-//     document.body.appendChild(newLaser);
-
-//     const enemyJetRect = enemyJet.getBoundingClientRect();
-//     const targetJetRect = jet.getBoundingClientRect();
-
-//     const laserPos = {
-//         x: enemyJetRect.left + enemyJetRect.width / 2,
-//         y: enemyJetRect.bottom,
-//     };
-
-//     const jetPos = {
-//         x: targetJetRect.left + targetJetRect.width / 2,
-//         y: targetJetRect.top + targetJetRect.height / 2,
-//     };
-
-//     const angle = calculateAngle(laserPos, jetPos);
-//     newLaser.style.transform = `rotate(${angle}deg)`;
-//     newLaser.style.left = `${laserPos.x}px`;
-//     newLaser.style.top = `${laserPos.y}px`;
-//     newLaser.style.visibility = 'visible';
-
-//     // Extended distance beyond the target to ensure it goes off-screen
-//     const offScreenDistance = 1.5 * Math.max(window.innerWidth, window.innerHeight);
-
-//     // Calculate extended endpoint for laser
-//     const endX = laserPos.x + offScreenDistance * Math.cos(angle * Math.PI / 180);
-//     const endY = laserPos.y + offScreenDistance * Math.sin(angle * Math.PI / 180);
-
-//     // Calculate the animation duration for the extended distance
-//     const laserSpeed = 800;
-//     const duration = (offScreenDistance / laserSpeed) * 1000;
-
-//     // Animate the laser movement beyond the target
-//     newLaser.animate([
-//         { transform: `translateY(0)`, opacity: 1, scale: 0 },
-//         { transform: `translate(${endX - laserPos.x}px, ${endY - laserPos.y}px)`, opacity: 1, scale: 4 },
-//     ], {
-//         duration: duration,
-//         easing: 'linear',
-//         fill: 'forwards',
-//     });
-
-//     // Remove the laser element after it goes off-screen
-//     setTimeout(() => {
-//         newLaser.remove();
-//     }, duration);
-// }
-
 function startJetAndLaserSequence() {
     enemyJet.classList.add("jet-entrance-one");
 
     enemyJet.addEventListener("animationstart", () => {
         const checkpoints = [
             { time: 0.45, fired: false },
+            { time: 0.475, fired: false },
             { time: 0.5, fired: false },
             { time: 0.65, fired: false },
+            { time: 0.675, fired: false },
             { time: 0.7, fired: false },
+
             
         ];
 

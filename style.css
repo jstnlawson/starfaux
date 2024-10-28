@@ -72,10 +72,41 @@ body {
     display: flex;
     width: fit-content;
     height: fit-content;
-    /* transform: rotate(0deg); */
     transition: transform 0.3s ease;
-    /* Adjust duration as needed */
     z-index: 2;
+    opacity: 1;
+}
+
+@keyframes userHitAnimation {
+    0% {
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    30% {
+        opacity: 0;
+    }
+    45% {
+        opacity: 1;
+    }
+    60% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+
+}
+
+.user-hit {
+    animation: userHitAnimation 1.5s forwards;
 }
 
 .gun-site {
@@ -244,14 +275,7 @@ body {
     transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
   }
   
-  /* <div class="enemy-jet">
-            <div class="enemy__left-wing"></div>
-            <div class="enemy__body-container">
-                <div class="enemy__body__top"></div>
-                <div class="enemy__body__bottom"></div>
-            </div>
-            <div class="enemy__right-wing"></div>
-        </div> */
+
 
   .enemy-jet {
     display: flex;
@@ -301,6 +325,7 @@ body {
         top: 120%;
         right: 120%;
         transform: scale(2) rotate(75deg); 
+        z-index: 3;
     }
   }
 
@@ -317,6 +342,11 @@ body {
         border-width: 4vw 5vw 0 15vw;
         border-color:  #444 transparent transparent transparent;
         transform: rotate(16deg);
+        transition: border-color 0.3s ease;
+    }
+
+    .left-wing--hit {
+        border-color: #f96d78 transparent transparent transparent;
     }
 
     .enemy__right-wing {
@@ -329,6 +359,10 @@ body {
         border-width: 4vw 15vw 0 5vw;
         border-color:  #444 transparent transparent transparent;
         transform: rotate(-16deg);
+    }
+
+    .right-wing--hit {
+        border-color: #f96d78 transparent transparent transparent;
     }
 
     .enemy__body-container {
@@ -348,6 +382,10 @@ body {
         transform: rotate(0deg);
     }
 
+    .body-top--hit {
+        border-color: transparent transparent #f96d78 transparent;
+    }
+
     .enemy__body__bottom {
         width: 0px;
         height: 0px;
@@ -356,6 +394,12 @@ body {
         border-color: transparent transparent #333 transparent;
         transform: rotate(180deg);
     }
+
+    .body-bottom--hit {
+        border-color: transparent transparent #f96d78 transparent;
+    }
+
+
 
     .enemy-laser {
         position: absolute;
