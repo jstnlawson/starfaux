@@ -1,15 +1,17 @@
+
 export const enemyJet = document.getElementsByClassName("enemy-jet")[0];
 
-export let firingLaser = false;
+// export let firingLaser = false;
 export let lastLaserLeft = true; // Track the last side fired from
 
 //Fire laser continuously while spacebar is held down
-export function fireUserLaserLoop() {
-    if (firingLaser) {
-      fireUserLaser(); // Fire laser when the spacebar is held
-    }
-    setTimeout(fireUserLaserLoop, 200); // Fire every 200ms
-  }
+// export function fireUserLaserLoop() {
+  
+//     if (firingLaser) {
+//       fireUserLaser(); // Fire laser when the spacebar is held
+//     }
+//     setTimeout(fireUserLaserLoop, 200); // Fire every 200ms
+//   }
   
   export function fireUserLaser() {
     
@@ -135,9 +137,6 @@ export function fireUserLaserLoop() {
   }
 
   export const userLaserControls = {
-    firingLaser,
-    lastLaserLeft,
     fireUserLaser,
-    fireUserLaserLoop,
     isOverlapping,
   };

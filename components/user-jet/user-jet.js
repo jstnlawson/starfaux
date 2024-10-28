@@ -1,6 +1,6 @@
-import { userLaserControls, enemyJet, firingLaser } from "../user-laser/user-laser.js";
+import { enemyJet, fireUserLaser } from "../user-laser/user-laser.js";
 
-const jet = document.getElementById("jetContainer");
+export const jet = document.getElementById("jetContainer");
 const engine = document.getElementsByClassName("engine")[0];
 const groundMovement = document.getElementsByClassName("ground-movement")[0];
 const nose = document.getElementsByClassName("nose")[0];
@@ -25,7 +25,6 @@ let movingUp = false;
 let movingDown = false;
 let movingForward = false;
 let movingBackward = false;
-
 
 export const userJetMovement = {
     jetX,
@@ -164,3 +163,15 @@ export function update() {
 }
 
 update(); // Start the update loop
+
+export let firingLaser = false;
+
+
+//Fire laser continuously while spacebar is held down and jet is moving
+export function fireUserLaserLoop() {
+  
+    if (firingLaser) {
+      fireUserLaser(); // Fire laser when the spacebar is held
+    }
+    setTimeout(fireUserLaserLoop, 200); // Fire every 200ms
+  }
