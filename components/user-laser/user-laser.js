@@ -1,6 +1,7 @@
 export const enemyJet = document.getElementsByClassName("enemy-jet")[0];
 
 export let firingLaser = false;
+export let lastLaserLeft = true; // Track the last side fired from
 
 //Fire laser continuously while spacebar is held down
 export function fireUserLaserLoop() {
@@ -11,7 +12,7 @@ export function fireUserLaserLoop() {
   }
   
   export function fireUserLaser() {
-    let lastLaserLeft = true; // Track the last side fired from
+    
     // Create a new laser element
     const laser = document.createElement("div");
     laser.classList.add("laser");
@@ -134,6 +135,8 @@ export function fireUserLaserLoop() {
   }
 
   export const userLaserControls = {
+    firingLaser,
+    lastLaserLeft,
     fireUserLaser,
     fireUserLaserLoop,
     isOverlapping,

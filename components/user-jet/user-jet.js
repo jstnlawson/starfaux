@@ -1,4 +1,4 @@
-import { firingLaser, userLaserControls, enemyJet } from "./user-laser/user-laser";
+import { userLaserControls, enemyJet, firingLaser } from "../user-laser/user-laser.js";
 
 const jet = document.getElementById("jetContainer");
 const engine = document.getElementsByClassName("engine")[0];
@@ -25,6 +25,7 @@ let movingUp = false;
 let movingDown = false;
 let movingForward = false;
 let movingBackward = false;
+
 
 export const userJetMovement = {
     jetX,
