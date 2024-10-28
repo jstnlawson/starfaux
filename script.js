@@ -23,6 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
   let movingBackward = false;
   let firingLaser = false;
 
+  // Adjust the canvas size when the window is resized
+  window.addEventListener("resize", function () {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
 //   function jetEntrance() {
 //     enemyJet.classList.add("jet-entrance-one");
 //   }
@@ -158,11 +164,7 @@ console.log(window.getComputedStyle(jet).transform);
 
   update(); // Start the update loop
 
-  // Adjust the canvas size when the window is resized
-  window.addEventListener("resize", function () {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+  
   //});
   //const horizontalOffset = lastLaserLeft ? -2.5 * window.innerWidth / 100 : 3.25 * window.innerWidth / 100; // Horizontal offset in vw
 
