@@ -4,6 +4,11 @@ export const enemyJet = document.getElementsByClassName("enemy-jet")[0];
 // export let firingLaser = false;
 export let lastLaserLeft = true; // Track the last side fired from
 
+// export const gunSite = document.querySelector(".gun-site");
+// export const gunSiteRect = gunSite.getBoundingClientRect();
+
+
+
 //Fire laser continuously while spacebar is held down
 // export function fireUserLaserLoop() {
   
@@ -85,7 +90,7 @@ export let lastLaserLeft = true; // Track the last side fired from
     // Toggle the side for the next laser
     lastLaserLeft = !lastLaserLeft;
   
-    // Get all child elements of enemyJet
+    // // Get all child elements of enemyJet
     const wings = [
       enemyJet.querySelector(".enemy__left-wing"),
       enemyJet.querySelector(".enemy__right-wing"),
@@ -95,10 +100,10 @@ export let lastLaserLeft = true; // Track the last side fired from
     const bodyTop = enemyJet.querySelector(".enemy__body__top");
     const bodyBottom = enemyJet.querySelector(".enemy__body__bottom");
   
-    // Combine all elements for hit detection
+    // // Combine all elements for hit detection
     const elementsToCheck = [...wings, bodyTop, bodyBottom];
   
-    // Check for overlaps with each inner element
+    // // Check for overlaps with each inner element
     for (const element of elementsToCheck) {
       const elementRect = element.getBoundingClientRect();
   
@@ -126,7 +131,7 @@ export let lastLaserLeft = true; // Track the last side fired from
     }
   }
   
-  // Function to check if two rectangles overlap
+  // // Function to check if two rectangles overlap
   export function isOverlapping(rect1, rect2) {
     return (
       rect1.left < rect2.right &&
@@ -138,5 +143,4 @@ export let lastLaserLeft = true; // Track the last side fired from
 
   export const userLaserControls = {
     fireUserLaser,
-    isOverlapping,
   };

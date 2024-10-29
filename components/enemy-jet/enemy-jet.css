@@ -1,0 +1,102 @@
+.enemy-jet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    top: 38.5%;
+    right: 50%;
+    transform: translate(50%, -50%) scale(0.1) rotate(0deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+    z-index: 0;
+    transition: transform 0.3s ease;
+}
+
+.enemy__left-wing {
+    position: absolute;
+    left: -28vw;
+    top: -2vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 4vw 5vw 0 15vw;
+    border-color: #444 transparent transparent transparent;
+    transform: rotate(16deg);
+    transition: border-color 0.3s ease;
+}
+
+.left-wing--hit {
+    border-color: #f96d78 transparent transparent transparent;
+}
+
+.enemy__right-wing {
+    position: absolute;
+    left: 8vw;
+    top: -2vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 4vw 15vw 0 5vw;
+    border-color: #444 transparent transparent transparent;
+    transform: rotate(-16deg);
+}
+
+.right-wing--hit {
+    border-color: #f96d78 transparent transparent transparent;
+}
+
+.enemy__body-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.enemy__body__top {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 5vw 9vw;
+    border-color: transparent transparent #444 transparent;
+    transform: rotate(0deg);
+}
+
+.body-top--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
+.enemy__body__bottom {
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 3vw 9vw;
+    border-color: transparent transparent #333 transparent;
+    transform: rotate(180deg);
+}
+
+.body-bottom--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
+.enemy-engine {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 3.5vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 1.5vw 9vw;
+    border-color: transparent transparent #f96d78 transparent;
+    transform: rotate(0deg);
+}
+
+.enemy-rear-visible {
+    display: block;
+}

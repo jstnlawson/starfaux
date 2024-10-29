@@ -1,3 +1,11 @@
+@import url('components/enemy-jet/enemy-jet.css');
+@import url('components/enemy-laser/enemy-laser.css');
+@import url('components/enemy-attacks/enemy-attack.css');
+@import url('components/user-jet/user-jet.css');
+@import url('components/user-laser/user-laser.css');
+@import url('background/background.css');
+@import url('components/boss/boss.css');
+
 body {
     margin: 0;
     padding: 0;
@@ -5,411 +13,102 @@ body {
     overflow: hidden;
 }
 
-.game-container {
+.fireball {
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100svw;
-    height: 100svh;
-    background: linear-gradient(to bottom, #ccf3ff, #08aadb 50%, #5e7b53 50%, #17320d);
+    width: 10vw;
+    height: 10vw;
+   opacity: 0;
+    /* animation: expandFireBallAnimation 1s ease-out forwards; */
 }
 
-.ground-movement {
+.white-glow {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 50vh;
-    /* Bottom half of the screen */
-    background: linear-gradient(to bottom, #6d6d6d1a, #0000001a, #6d6d6d1a, #0000001a);
-    /* Repeat pattern to avoid snapping */
-    background: linear-gradient(to bottom, #0000001a 0%, #4b4b4b1a 25%, #0000001a 50%, #4b4b4b1a 75%, #0000001a 100%);
-    background-size: 100% 200%;
-    background-position: 0 100%;
-    /* Start from the top */
-    animation: scrollGround 1s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
-}
-
-/* I use cubic-bezier instead of "linear" because it just looks a little smoother */
-
-@keyframes scrollGround {
-    0% {
-        background-position: 0 100%;
-        /* Start position */
-    }
-
-    100% {
-        background-position: 0 0;
-        /* Scroll to bottom */
-    }
-
-}
-
-.ground-movement__fast {
-    animation: scrollGround 0.5s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
-}
-
-.ground-movement__slow {
-    animation: scrollGround 2s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
-}
-
-.pillar {
-    position: absolute;
-    /* bottom: 50vh; */
-    width: 20vw;
-    height: 50vh;
-    background: linear-gradient(to right, #333, #999, #ccc 35%, #ccc 65%, #999, #333);
-    z-index: 0;
-}
-
-.jet-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%) scale(0.5);
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-    transition: transform 0.3s ease;
-    z-index: 2;
-    opacity: 1;
-}
-
-@keyframes userHitAnimation {
-    0% {
-        opacity: 0;
-    }
-    15% {
-        opacity: 1;
-    }
-    30% {
-        opacity: 0;
-    }
-    45% {
-        opacity: 1;
-    }
-    60% {
-        opacity: 0;
-    }
-    75% {
-        opacity: 1;
-    }
-    90% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-
-}
-
-.user-hit {
-    animation: userHitAnimation 1.5s forwards;
-}
-
-.gun-site {
-    position: absolute;
-    left: 50%;
-    top: -15vh;
-    transform: translate(-50%, 0);
+    width: 10vw;
+    height: 10vw;
     border-radius: 50%;
-    width: 1vw;
-    height: 1vw;
-    background: #f96d7880;
+    background: radial-gradient(circle, #ffffff, #fff);
+    animation: whiteGlow 1s infinite;
 }
 
-.nose {
+.yellow-glow {
     position: absolute;
-    left: 0;
-    top: 5vw;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: .25vw 5vw 0 5vw;
-    border-color: #bbb transparent transparent transparent;
-    transform: rotate(0deg);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.1s ease, visibility 0.1s ease;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff0, transparent);
+    animation: yellowGlow 1s infinite;
 }
 
-.nose--visible {
-    opacity: 1;
-    visibility: visible;
-    border-width: .75vw 5vw 0 5vw;
-}
-
-.front-wing__left {
+.red-glow {
     position: absolute;
-    left: -7vw;
-    top: .75vw;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 1.5vw 2.5vw 9vw;
-    border-color: transparent transparent #143e81 transparent;
-    transform: rotate(65deg);
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f00, transparent);
+    animation: redGlow 1s ease-in-out infinite ;
 }
 
-.front-wing__right {
-    position: absolute;
-    left: 6.5vw;
-    top: .75vw;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 9vw 2.5vw 1.5vw;
-    border-color: transparent transparent #143e81 transparent;
-    transform: rotate(-65deg);
+.expand-fireball {
+    animation: expandFireBallAnimation 1.25s ease-out;
 }
 
-.back-wing__left {
-    position: absolute;
-    left: -13.5vw;
-    top: 5.7vw;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 5vw 2.5vw 9vw;
-
-    border-color: transparent transparent #ccc transparent;
-    transform: rotate(-27deg);
-
-    box-shadow: 0 1px 0 0 #555;
-    box-shadow: 0 2px 0 0 #55555580;
-}
-
-.back-wing__left--down {
-    border-width: 0 5vw 1vw 9vw;
-    transform: rotate(-18deg);
-}
-
-.back-wing__right {
-    position: absolute;
-    left: 9.5vw;
-    top: 5.7vw;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 9vw 2.5vw 5vw;
-    border-color: transparent transparent #ccc transparent;
-    transform: rotate(27deg);
-    box-shadow: 0 2px 0 0 #55555580;
-}
-
-.back-wing__right--down {
-    border-width: 0 9vw 1vw 5vw;
-    transform: rotate(18deg);
-}
-
-.body-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.body__left {
-    /* position: absolute;
-    left: 0; */
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 0 5vw 5vw;
-    border-color: transparent transparent #eee transparent;
-    transform: rotate(0deg);
-}
-
-.body__right {
-    /* position: absolute;
-    left: 0; */
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 5vw 5vw 0;
-    border-color: transparent transparent #ccc transparent;
-    transform: rotate(0deg);
-}
-
-.engine {
-    position: absolute;
-    left: 0;
-    top: 3.5vw;
-    
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 0 5vw 1.5vw 5vw;
-    border-color: transparent transparent #f96d78 transparent;
-    transform: rotate(0deg);
-    box-shadow: 0 2px 0 0 #f96d7951;
-    
-}
-
-.engine-boost {
-    border-color: transparent transparent #fcafb6 transparent;
-    box-shadow: 0 4px 0 0 #fcafb651;
-}
-
-.engine-slow {
-    border-color: transparent transparent #df424f transparent;
-    box-shadow: 0 4px 0 0 #df424f51;
-}
-
-.engine--down {
-    top: 2.5vw;
-    border-width: 0 5vw 2.5vw 5vw; 
-    top: 3vw;
-    border-width: 0 5vw 2vw 5vw; 
-}
-
-.laser {
-    position: absolute;
-    width: 3vw;
-    height: 1vh;
-    border-radius: 25%;
-    background: linear-gradient(to right, #f96d78, #fff);
-    transform-origin: center;
-    transform: scale(1);
-    transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
-  }
-  
-
-
-  .enemy-jet {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 0;
-    top: 0;
-    top: 38.5%;
-    right: 50%;
-    transform: translate(50%, -50%) scale(0.1) rotate(0deg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: fit-content;
-    height: fit-content;
-    z-index: 0;
-    transition: transform 0.3s ease;
-  }
-
-  .jet-entrance-one {
-    /* animation: jetEntranceOneAnimation 30s forwards ease-out; */
-    animation: jetEntranceOneAnimation 15s forwards cubic-bezier(0.42, 0, 0.58, 1); /* Smooth custom easing */
-
-  }
-
-  @keyframes jetEntranceOneAnimation {
+@keyframes expandFireBallAnimation {
     0% {
-      top: 0;
-      right: 0;
-    transform: scale(0) rotate(-90deg); 
+        opacity: 1;
+        transform: scale(0);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+
+/* @keyframes whiteGlow {
+    0% {
+        transform: scale(1);
     }
 
     50% {
-       top: 25%;
-        right: 90%;
-      transform: scale(0.075) rotate(75deg);
-    }
-   
-    75% {
-        top: 50%;
-       right: 10%;
-        transform: scale(0.25) rotate(-75deg); 
+        transform: scale(1.2);
     }
 
     100% {
-        top: 120%;
-        right: 120%;
-        transform: scale(2) rotate(75deg); 
-        z-index: 3;
-    }
-  }
-
-  
-
-
-    .enemy__left-wing {
-        position: absolute;
-        left: -28vw;
-        top: -2vw;
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 4vw 5vw 0 15vw;
-        border-color:  #444 transparent transparent transparent;
-        transform: rotate(16deg);
-        transition: border-color 0.3s ease;
-    }
-
-    .left-wing--hit {
-        border-color: #f96d78 transparent transparent transparent;
-    }
-
-    .enemy__right-wing {
-        position: absolute;
-        left: 8vw;
-        top: -2vw;
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 4vw 15vw 0 5vw;
-        border-color:  #444 transparent transparent transparent;
-        transform: rotate(-16deg);
-    }
-
-    .right-wing--hit {
-        border-color: #f96d78 transparent transparent transparent;
-    }
-
-    .enemy__body-container {
-        position: absolute;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .enemy__body__top {
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 0 9vw 5vw 9vw;
-        border-color: transparent transparent #444 transparent;
-        transform: rotate(0deg);
-    }
-
-    .body-top--hit {
-        border-color: transparent transparent #f96d78 transparent;
-    }
-
-    .enemy__body__bottom {
-        width: 0px;
-        height: 0px;
-        border-style: solid;
-        border-width: 0 9vw 3vw 9vw;
-        border-color: transparent transparent #333 transparent;
-        transform: rotate(180deg);
-    }
-
-    .body-bottom--hit {
-        border-color: transparent transparent #f96d78 transparent;
-    }
-
-
-
-    .enemy-laser {
-        position: absolute;
-        width: 3vw;
-        height: 3vw;
-        border-radius: 50%;
-        background: linear-gradient(to right, #e26df9, #fff);
-        transform-origin: center;
         transform: scale(1);
-        transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
-        z-index: 1;
-      }
+    }
+}
 
+@keyframes yellowGlow {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+} */
+
+@keyframes redGlow {
+    0% {
+        background: radial-gradient(circle, #ff1000, transparent);
+    }
+
+    50% {
+       background: radial-gradient(circle, #ff2000, transparent); 
+    }
+
+    100% {
+        background: radial-gradient(circle, #ff0000, transparent);
+    }
+}

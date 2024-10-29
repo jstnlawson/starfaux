@@ -1,0 +1,10 @@
+.laser {
+    position: absolute;
+    width: 3vw;
+    height: 1vh;
+    border-radius: 25%;
+    background: linear-gradient(to right, #f96d78, #fff);
+    transform-origin: center;
+    transform: scale(1);
+    transition: transform 0.45s ease-out, left 0.45s linear, top 0.45s linear;
+}

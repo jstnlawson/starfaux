@@ -1,0 +1,272 @@
+.jet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    transition: transform 0.3s ease;
+    z-index: 2;
+    opacity: 1;
+}
+
+@keyframes userHitAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+.user-hit {
+    animation: userHitAnimation 1.5s forwards;
+}
+
+.gun-site {
+    position: absolute;
+    left: 50%;
+    top: -15vh;
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    width: 1vw;
+    height: 1vw;
+    background: #f96d7880;
+}
+
+.nose {
+    position: absolute;
+    left: 0;
+    top: 5vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: .25vw 5vw 0 5vw;
+    border-color: #bbb transparent transparent transparent;
+    transform: rotate(0deg);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.1s ease, visibility 0.1s ease;
+}
+
+.nose--visible {
+    opacity: 1;
+    visibility: visible;
+    border-width: .75vw 5vw 0 5vw;
+}
+
+.front-wing__left {
+    position: absolute;
+    left: -7vw;
+    top: .75vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 1.5vw 2.5vw 9vw;
+    border-color: transparent transparent #143e81 transparent;
+    transform: rotate(65deg);
+}
+
+.front-wing__right {
+    position: absolute;
+    left: 6.5vw;
+    top: .75vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 2.5vw 1.5vw;
+    border-color: transparent transparent #143e81 transparent;
+    transform: rotate(-65deg);
+}
+
+.back-wing__left {
+    position: absolute;
+    left: -13.5vw;
+    top: 5.7vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 2.5vw 9vw;
+
+    border-color: transparent transparent #ccc transparent;
+    transform: rotate(-27deg);
+
+    box-shadow: 0 1px 0 0 #555;
+    box-shadow: 0 2px 0 0 #55555580;
+}
+
+.back-wing__left--down {
+    border-width: 0 5vw 1vw 9vw;
+    transform: rotate(-18deg);
+}
+
+.back-wing__right {
+    position: absolute;
+    left: 9.5vw;
+    top: 5.7vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 2.5vw 5vw;
+    border-color: transparent transparent #ccc transparent;
+    transform: rotate(27deg);
+    box-shadow: 0 2px 0 0 #55555580;
+}
+
+.back-wing__right--down {
+    border-width: 0 9vw 1vw 5vw;
+    transform: rotate(18deg);
+}
+
+.body-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body__left {
+    /* position: absolute;
+    left: 0; */
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 0 5vw 5vw;
+    border-color: transparent transparent #eee transparent;
+    transform: rotate(0deg);
+}
+
+.body__right {
+    /* position: absolute;
+    left: 0; */
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 5vw 0;
+    border-color: transparent transparent #ccc transparent;
+    transform: rotate(0deg);
+}
+
+.engine {
+    position: absolute;
+    left: 0;
+    top: 3.5vw;
+
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 1.5vw 5vw;
+    border-color: transparent transparent #f96d78 transparent;
+    transform: rotate(0deg);
+    box-shadow: 0 2px 0 0 #f96d7951;
+
+}
+
+.engine-boost {
+    border-color: transparent transparent #fcafb6 transparent;
+    box-shadow: 0 4px 0 0 #fcafb651;
+}
+
+.engine-slow {
+    border-color: transparent transparent #df424f transparent;
+    box-shadow: 0 4px 0 0 #df424f51;
+}
+
+.engine--down {
+    top: 2.5vw;
+    border-width: 0 5vw 2.5vw 5vw;
+    top: 3vw;
+    border-width: 0 5vw 2vw 5vw;
+}
+
+.user-health {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100svw - 4px);
+    height: fit-content;
+    border: solid 1px #000;
+    border-radius: 5px;
+    padding: 2px;
+    z-index: 1;
+}
+
+.health-bar {
+    width: 100%;
+    height: 1vh;
+    background: #f96d78;
+    z-index: 1;
+    border-radius: 7px;
+}
+
+.user-damage__1 {
+    width: 90%;
+}
+
+.user-damage__2 {
+    width: 80%;
+}
+
+.user-damage__3 {
+    width: 70%;
+}
+
+.user-damage__4 {
+    width: 60%;
+}
+
+.user-damage__5 {
+    width: 50%;
+}
+
+.user-damage__6 {
+    width: 40%;
+}
+
+.user-damage__7 {
+    width: 30%;
+}
+
+.user-damage__8 {
+    width: 20%;
+}
+
+.user-damage__9 {
+    width: 10%;
+}
+
+.user-damage__10 {
+    width: 0%;
+}
