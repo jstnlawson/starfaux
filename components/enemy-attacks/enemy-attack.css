@@ -1,0 +1,144 @@
+.enemy-attack-one {
+    /* animation: jetEntranceOneAnimation 30s forwards ease-out; */
+    animation: enemyAttackOneAnimation 15s forwards cubic-bezier(0.42, 0, 0.58, 1);
+    /* Smooth custom easing */
+
+}
+
+@keyframes enemyAttackOneAnimation {
+    0% {
+        top: 0;
+        right: 0;
+        transform: scale(0) rotate(-90deg);
+    }
+
+    50% {
+        top: 25%;
+        right: 90%;
+        transform: scale(0.075) rotate(75deg);
+    }
+
+    85% {
+        top: 50%;
+        right: 10%;
+        transform: scale(0.25) rotate(-75deg);
+        z-index: 0;
+    }
+
+    90% {
+        z-index: 3;
+        pointer-events: none;
+    }
+
+    100% {
+        top: 120%;
+        right: 120%;
+        transform: scale(2) rotate(75deg);
+    }
+}
+
+.enemy-attack-two {
+    animation: enemyAttackTwoAnimation 7s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes enemyAttackTwoAnimation {
+    0% {
+        top: -20%;
+        right: -20%;
+        transform: scale(3) rotate(0deg);
+        z-index: 3;
+    }
+
+    
+
+    75% {
+        top: 35%;
+        right: 30%;
+        z-index: 0;
+    }
+
+    85% {
+        z-index: 0;
+    }
+
+    100% {
+        top: 0%;
+        right: 120%;
+        transform: scale(0) rotate(-75deg);
+    }
+}
+
+.enemy-attack-three {
+    animation: enemyAttackThreeAnimation 10s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes enemyAttackThreeAnimation {
+    0% {
+        top: 0;
+        right: 50%;
+        transform: scale(0) rotate(-20deg);
+    }
+
+   
+50% {
+        
+        transform: scale(0.3) rotate(0deg);
+    }
+    
+
+  
+    99% {
+        opacity: 1;
+    }
+    100% {
+        top: 50%;
+        right: 50%;
+        transform: scale(1) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+.enemy-victory {
+    animation: enemyVictoryAnimation 1s forwards cubic-bezier(0.42, 0, 0.58, 1);
+    /* right: -50%; */
+}
+
+@keyframes enemyVictoryAnimation {
+    0% {
+        top: 50%;
+        right: 50%;
+        transform: scale(0) rotate(0deg);     
+    }
+
+    
+    100% {
+        top: -50%;
+        right: -50%;
+        transform: scale(2) rotate(80deg);
+    }
+
+}
+
+.enemy-gloat {
+    animation: enemyGloatAnimation 8s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes enemyGloatAnimation {
+    0% {
+        top: 60%;
+        right: -50%;
+        transform: scale(2) rotate(80deg);
+    }
+
+    35% {
+        top: 40%;
+        right: 60%;
+        transform: scale(0.25) rotate(0deg);
+    }
+
+    100% {
+        top: -20%;
+        right: 120%;
+        transform: scale(0) rotate(-45deg);
+    }
+}

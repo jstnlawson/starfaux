@@ -1,0 +1,8 @@
+.pillar {
+    position: absolute;
+    /* bottom: 50vh; */
+    width: 20vw;
+    height: 50vh;
+    background: linear-gradient(to right, #333, #999, #ccc 35%, #ccc 65%, #999, #333);
+    z-index: 0;
+}

@@ -1,0 +1,359 @@
+.jet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    transition: transform 0.3s ease;
+    z-index: 2;
+    opacity: 1;
+}
+
+.jet-disappear {
+    opacity: 0;
+}
+
+@keyframes userHitAnimation {
+    0% {
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 1;
+    }
+
+    30% {
+        opacity: 0;
+    }
+
+    45% {
+        opacity: 1;
+    }
+
+    60% {
+        opacity: 0;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+
+}
+
+.user-hit {
+    animation: userHitAnimation 1.5s forwards;
+}
+
+.gun-site {
+    position: absolute;
+    left: 50%;
+    top: -15vh;
+    transform: translate(-50%, 0);
+    border-radius: 50%;
+    width: 1vw;
+    height: 1vw;
+    background: #f96d7880;
+}
+
+.nose {
+    position: absolute;
+    left: 0;
+    top: 5vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: .25vw 5vw 0 5vw;
+    border-color: #bbb transparent transparent transparent;
+    transform: rotate(0deg);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.1s ease, visibility 0.1s ease;
+}
+
+.nose--visible {
+    opacity: 1;
+    visibility: visible;
+    border-width: .75vw 5vw 0 5vw;
+}
+
+.front-wing__left {
+    position: absolute;
+    left: -7vw;
+    top: .75vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 1.5vw 2.5vw 9vw;
+    border-color: transparent transparent #143e81 transparent;
+    transform: rotate(65deg);
+}
+
+.front-wing__right {
+    position: absolute;
+    left: 6.5vw;
+    top: .75vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 2.5vw 1.5vw;
+    border-color: transparent transparent #143e81 transparent;
+    transform: rotate(-65deg);
+}
+
+.back-wing__left {
+    position: absolute;
+    left: -13.5vw;
+    top: 5.7vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 2.5vw 9vw;
+
+    border-color: transparent transparent #ccc transparent;
+    transform: rotate(-27deg);
+
+    box-shadow: 0 1px 0 0 #555;
+    box-shadow: 0 2px 0 0 #55555580;
+}
+
+.back-wing__left--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
+.back-wing__left--down {
+    border-width: 0 5vw 1vw 9vw;
+    transform: rotate(-18deg);
+}
+
+.back-wing__right {
+    position: absolute;
+    left: 9.5vw;
+    top: 5.7vw;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 9vw 2.5vw 5vw;
+    border-color: transparent transparent #ccc transparent;
+    transform: rotate(27deg);
+    box-shadow: 0 2px 0 0 #55555580;
+}
+
+.back-wing__right--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
+.back-wing__right--down {
+    border-width: 0 9vw 1vw 5vw;
+    transform: rotate(18deg);
+}
+
+.body-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.body__left {
+    /* position: absolute;
+    left: 0; */
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 0 5vw 5vw;
+    border-color: transparent transparent #eee transparent;
+    transform: rotate(0deg);
+}
+
+.body__left--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
+.body__right {
+    /* position: absolute;
+    left: 0; */
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 5vw 0;
+    border-color: transparent transparent #ccc transparent;
+    transform: rotate(0deg);
+}
+
+.body__right--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
+.engine {
+    position: absolute;
+    left: 0;
+    top: 3.5vw;
+
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 0 5vw 1.5vw 5vw;
+    border-color: transparent transparent #f96d78 transparent;
+    transform: rotate(0deg);
+    box-shadow: 0 2px 0 0 #f96d7951;
+
+}
+
+.engine-boost {
+    border-color: transparent transparent #fcafb6 transparent;
+    box-shadow: 0 4px 0 0 #fcafb651;
+}
+
+.engine-slow {
+    border-color: transparent transparent #df424f transparent;
+    box-shadow: 0 4px 0 0 #df424f51;
+}
+
+.engine--down {
+    top: 2.5vw;
+    border-width: 0 5vw 2.5vw 5vw;
+    top: 3vw;
+    border-width: 0 5vw 2vw 5vw;
+}
+
+.smoke {
+    position: absolute;
+    left: 0;
+    top: 3.5vw;
+    display: none;
+}
+
+.add-smoke {
+    display: block;
+}
+
+.smoke-wisp__one {
+    position: absolute;
+    left: -2vw;
+    top: -8vh;;
+    width: 5vw;
+    height: 10vw;
+    margin: 0 2px 50px;
+    background: linear-gradient(to bottom, #555, #000);
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(2vw);
+    animation: wispOneAnimation 2s infinite cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes wispOneAnimation {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.25;
+    }
+}
+
+.smoke-wisp__two {
+    position: absolute;
+    left: -2vw;
+    top: -10vh;
+    width: 5vw;
+    height: 10vw;
+    margin: 0 2px 50px;
+    background: linear-gradient(to bottom, #999, #555);
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(2vw);
+    animation: wispTwoAnimation 4s infinite cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes wispTwoAnimation {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+}
+
+.smoke-wisp__three {
+    position: absolute;
+    left: -2vw;
+    top: -10vh;
+    width: 5vw;
+    height: 10vw;
+    margin: 0 2px 50px;
+    background: linear-gradient(to bottom, #bbb, #999);
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(8vw);
+    animation: wispThreeAnimation 6s infinite cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes wispThreeAnimation {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.25;
+    }
+}
+
+.big-smoke {
+    left: -1.5vw;
+    top: -20vh;
+    height: 30vh;
+    width: 15vw;
+}
+
+.jet-crash-animation {
+    animation: userJetCrashAnimation 4s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes userJetCrashAnimation {
+    0% {
+        transform: rotate(0deg) scale(1);  /* Starting point */
+    }
+    20% {
+        transform: rotate(2000deg) scale(0.8);
+    }
+    40% {
+        transform: rotate(1800deg) scale(0.6);
+    }
+    60% {
+        transform: rotate(2700deg) scale(0.4);
+        z-index: 0;
+    }
+    80% {
+        transform: rotate(30deg) scale(0.2);
+    }
+    100% {
+        top: 47%;
+        left: 20%;
+        transform: rotate(4340deg) scale(0.1); /* Final position and scale */
+    }
+}

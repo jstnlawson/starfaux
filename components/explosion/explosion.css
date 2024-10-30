@@ -1,0 +1,77 @@
+.fireball {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 10vw;
+   opacity: 0;
+    /* animation: expandFireBallAnimation 1s ease-out forwards; */
+}
+
+.white-glow {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff, #ffffff00);
+    animation: whiteGlow 1s infinite;
+}
+
+.yellow-glow {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ff0, transparent);
+    animation: yellowGlow 1s infinite;
+}
+
+.red-glow {
+    position: absolute;
+    width: 10vw;
+    height: 10vw;
+    border-radius: 50%;
+    background: radial-gradient(circle, #f00, transparent);
+    animation: redGlow 0.025s ease-in-out infinite ;
+}
+
+.expand-fireball {
+    animation: expandFireBallAnimation 1.25s ease-out;
+}
+
+.expand-fireball--user {
+    top: 47%;
+    left: 20%;
+    animation: expandFireBallAnimation 1.25s ease-out;
+}
+
+@keyframes expandFireBallAnimation {
+    0% {
+        opacity: 1;
+        transform: scale(0);
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(10);
+        opacity: 0;
+    }
+}
+
+@keyframes redGlow {
+    0% {
+        background: radial-gradient(circle, #ff1000, transparent);
+    }
+
+    50% {
+       background: radial-gradient(circle, #ff6000, transparent); 
+    }
+
+    100% {
+        background: radial-gradient(circle, #ff0000, transparent);
+    }
+}

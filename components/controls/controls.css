@@ -1,0 +1,321 @@
+        /* <div class="controls">
+            <div class="control__left">
+                <div class="control__left--top">
+                    <div class="w-key">w</div>
+                </div>
+                <div class="control__left--bottom">
+                    <div class="a-key">a</div>
+                    <div class="s-key">s</div>
+                    <div class="d-key">d</div>
+                </div>
+            </div>
+            <div class="control__middle">
+                <div class="space-key">fire</div>
+            </div>
+            <div class="control__right">
+                <div class="control__right--top">
+                    <div class="up-key">up</div>
+                </div>
+                <div class="control__right--bottom">
+                    <div class="left-key">left</div>
+                    <div class="down-key">down</div>
+                    <div class="right-key">right</div>
+                </div>
+            </div>
+        </div> */
+
+.controls-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    bottom: 1%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: fit-content;
+    z-index: 2;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    width: 100%;
+    margin-bottom: 2px;
+}
+
+.control__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.control__left--top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.control__left--bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.control__middle {
+    display: flex;
+    justify-content: bottom;
+    align-items: center;
+}
+
+.control__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    height: fit-content;
+}
+
+.control__right--top {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.control__right--bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: fit-content;
+}
+
+.w-key, .a-key, .s-key, .d-key, .up-key, .left-key, .down-key, .right-key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5vw;
+    height: 2vw;
+    border: 1px solid #ffffff50;
+    border-radius: 1vw;
+    margin: 0.5vw;
+    font-size: 1.5vw;
+    color: #ffffff70;
+    background: linear-gradient(to right,  transparent,  #ffffff50, transparent);
+}
+
+.space-key {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    height: 2vw;
+    border: 1px solid #ffffff50;
+    border-radius: 1vw;
+    margin: 0.5vw;
+    font-size: 1.5vw;
+    color: #ffffff70;
+    background: linear-gradient(to right,  transparent,  #ffffff50, transparent);
+}
+
+.key-pressed {
+    background: linear-gradient(to right,  transparent,  #f96d7890, transparent);
+}
+
+.user-health {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: calc(100svw - 12px);
+    height: fit-content;
+    border: solid 1px #ffffff50;
+    border-radius: calc(1vw + 4px);
+    padding: 2px;
+    margin: 5px;
+    z-index: 5;
+}
+
+.health-bar {
+    width: 100%;
+    height: 2vh;
+    background: #f96d7890;
+    z-index: 1;
+    border-radius: 1vw;
+}
+
+.user-damage__1 {
+    width: 90%;
+}
+
+.user-damage__2 {
+    width: 80%;
+}
+
+.user-damage__3 {
+    width: 70%;
+}
+
+.user-damage__4 {
+    width: 60%;
+}
+
+.user-damage__5 {
+    width: 50%;
+}
+
+.user-damage__6 {
+    width: 40%;
+}
+
+.user-damage__7 {
+    width: 30%;
+}
+
+.user-damage__8 {
+    width: 20%;
+}
+
+.user-damage__9 {
+    width: 10%;
+}
+
+.user-damage__10 {
+    width: 0%;
+}
+
+.enemy-health {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: calc(100svw - 12px);
+    height: fit-content;
+    border: solid 1px #ffffff50;
+    border-radius: calc(1vw + 4px);
+    padding: 2px;
+    margin: 5px;
+    z-index: 5;
+}
+
+.enemy-health--bar {
+    width: 100%;
+    height: 2vh;
+    background: #e26df980;
+    z-index: 1;
+    border-radius: 1vw;
+}
+
+.enemy-health__1 { width: 99%; }
+.enemy-health__2 { width: 98%; }
+.enemy-health__3 { width: 97%; }
+.enemy-health__4 { width: 96%; }
+.enemy-health__5 { width: 95%; }
+.enemy-health__6 { width: 94%; }
+.enemy-health__7 { width: 93%; }
+.enemy-health__8 { width: 92%; }
+.enemy-health__9 { width: 91%; }
+.enemy-health__10 { width: 90%; }
+.enemy-health__11 { width: 89%; }
+.enemy-health__12 { width: 88%; }
+.enemy-health__13 { width: 87%; }
+.enemy-health__14 { width: 86%; }
+.enemy-health__15 { width: 85%; }
+.enemy-health__16 { width: 84%; }
+.enemy-health__17 { width: 83%; }
+.enemy-health__18 { width: 82%; }
+.enemy-health__19 { width: 81%; }
+.enemy-health__20 { width: 80%; }
+.enemy-health__21 { width: 79%; }
+.enemy-health__22 { width: 78%; }
+.enemy-health__23 { width: 77%; }
+.enemy-health__24 { width: 76%; }
+.enemy-health__25 { width: 75%; }
+.enemy-health__26 { width: 74%; }
+.enemy-health__27 { width: 73%; }
+.enemy-health__28 { width: 72%; }
+.enemy-health__29 { width: 71%; }
+.enemy-health__30 { width: 70%; }
+.enemy-health__31 { width: 69%; }
+.enemy-health__32 { width: 68%; }
+.enemy-health__33 { width: 67%; }
+.enemy-health__34 { width: 66%; }
+.enemy-health__35 { width: 65%; }
+.enemy-health__36 { width: 64%; }
+.enemy-health__37 { width: 63%; }
+.enemy-health__38 { width: 62%; }
+.enemy-health__39 { width: 61%; }
+.enemy-health__40 { width: 60%; }
+.enemy-health__41 { width: 59%; }
+.enemy-health__42 { width: 58%; }
+.enemy-health__43 { width: 57%; }
+.enemy-health__44 { width: 56%; }
+.enemy-health__45 { width: 55%; }
+.enemy-health__46 { width: 54%; }
+.enemy-health__47 { width: 53%; }
+.enemy-health__48 { width: 52%; }
+.enemy-health__49 { width: 51%; }
+.enemy-health__50 { width: 50%; }
+.enemy-health__51 { width: 49%; }
+.enemy-health__52 { width: 48%; }
+.enemy-health__53 { width: 47%; }
+.enemy-health__54 { width: 46%; }
+.enemy-health__55 { width: 45%; }
+.enemy-health__56 { width: 44%; }
+.enemy-health__57 { width: 43%; }
+.enemy-health__58 { width: 42%; }
+.enemy-health__59 { width: 41%; }
+.enemy-health__60 { width: 40%; }
+.enemy-health__61 { width: 39%; }
+.enemy-health__62 { width: 38%; }
+.enemy-health__63 { width: 37%; }
+.enemy-health__64 { width: 36%; }
+.enemy-health__65 { width: 35%; }
+.enemy-health__66 { width: 34%; }
+.enemy-health__67 { width: 33%; }
+.enemy-health__68 { width: 32%; }
+.enemy-health__69 { width: 31%; }
+.enemy-health__70 { width: 30%; }
+.enemy-health__71 { width: 29%; }
+.enemy-health__72 { width: 28%; }
+.enemy-health__73 { width: 27%; }
+.enemy-health__74 { width: 26%; }
+.enemy-health__75 { width: 25%; }
+.enemy-health__76 { width: 24%; }
+.enemy-health__77 { width: 23%; }
+.enemy-health__78 { width: 22%; }
+.enemy-health__79 { width: 21%; }
+.enemy-health__80 { width: 20%; }
+.enemy-health__81 { width: 19%; }
+.enemy-health__82 { width: 18%; }
+.enemy-health__83 { width: 17%; }
+.enemy-health__84 { width: 16%; }
+.enemy-health__85 { width: 15%; }
+.enemy-health__86 { width: 14%; }
+.enemy-health__87 { width: 13%; }
+.enemy-health__88 { width: 12%; }
+.enemy-health__89 { width: 11%; }
+.enemy-health__90 { width: 10%; }
+.enemy-health__91 { width: 9%; }
+.enemy-health__92 { width: 8%; }
+.enemy-health__93 { width: 7%; }
+.enemy-health__94 { width: 6%; }
+.enemy-health__95 { width: 5%; }
+.enemy-health__96 { width: 4%; }
+.enemy-health__97 { width: 3%; }
+.enemy-health__98 { width: 2%; }
+.enemy-health__99 { width: 1%; }    
+.enemy-health__100 { width: 0%; }
