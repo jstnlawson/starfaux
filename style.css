@@ -5,110 +5,12 @@
 @import url('components/user-laser/user-laser.css');
 @import url('background/background.css');
 @import url('components/boss/boss.css');
+@import url('components/explosion/explosion.css');
+@import url('components/controls/controls.css');
 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
-}
-
-.fireball {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 10vw;
-    height: 10vw;
-   opacity: 0;
-    /* animation: expandFireBallAnimation 1s ease-out forwards; */
-}
-
-.white-glow {
-    position: absolute;
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ffffff, #fff);
-    animation: whiteGlow 1s infinite;
-}
-
-.yellow-glow {
-    position: absolute;
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
-    background: radial-gradient(circle, #ff0, transparent);
-    animation: yellowGlow 1s infinite;
-}
-
-.red-glow {
-    position: absolute;
-    width: 10vw;
-    height: 10vw;
-    border-radius: 50%;
-    background: radial-gradient(circle, #f00, transparent);
-    animation: redGlow 1s ease-in-out infinite ;
-}
-
-.expand-fireball {
-    animation: expandFireBallAnimation 1.25s ease-out;
-}
-
-@keyframes expandFireBallAnimation {
-    0% {
-        opacity: 1;
-        transform: scale(0);
-    }
-
-    90% {
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(10);
-        opacity: 0;
-    }
-}
-
-/* @keyframes whiteGlow {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-}
-
-@keyframes yellowGlow {
-    0% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.2);
-    }
-
-    100% {
-        transform: scale(1);
-    }
-} */
-
-@keyframes redGlow {
-    0% {
-        background: radial-gradient(circle, #ff1000, transparent);
-    }
-
-    50% {
-       background: radial-gradient(circle, #ff2000, transparent); 
-    }
-
-    100% {
-        background: radial-gradient(circle, #ff0000, transparent);
-    }
 }

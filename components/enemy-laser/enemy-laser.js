@@ -81,6 +81,10 @@ export function shootLaser() {
 let hitCounter = 0;
 // Event listener for 'laserHit' to update hit counter and health bar
 document.addEventListener("laserHit", () => {
+    const smoke = document.querySelector(".smoke");
+    const smokeWispOne = document.querySelector(".smoke-wisp__one");
+    const smokeWispTwo = document.querySelector(".smoke-wisp__two");
+    const smokeWispThree = document.querySelector(".smoke-wisp__three");
     hitCounter++;
     console.log("Hit Counter:", hitCounter);
 
@@ -94,10 +98,22 @@ document.addEventListener("laserHit", () => {
         jet.classList.remove("user-hit");
     }, 1500);
 
-    // Stop tracking hits once hitCounter reaches 10
-    if (hitCounter >= 10) {
-        document.removeEventListener("laserHit", incrementHitCounter); // Stop listener after 10 hits
+    if (hitCounter >= 7) {
+        smoke.classList.add("add-smoke");
     }
+
+    if (hitCounter >= 10) {
+        jet.classList.add("jet-crash-animation");
+        smokeWispOne.classList.add("big-smoke");
+        smokeWispTwo.classList.add("big-smoke");
+        smokeWispThree.classList.add("big-smoke");
+        console.log("Game Over!");
+    }
+
+    // // Stop tracking hits once hitCounter reaches 10
+    // if (hitCounter >= 10) {
+    //     document.removeEventListener("laserHit", incrementHitCounter); // Stop listener after 10 hits
+    // }
 });
 
 // export Function to check collision between two rectangles

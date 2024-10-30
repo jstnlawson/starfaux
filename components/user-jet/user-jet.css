@@ -208,65 +208,132 @@
     border-width: 0 5vw 2vw 5vw;
 }
 
-.user-health {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
+.smoke {
     position: absolute;
-    bottom: 0;
     left: 0;
-    width: calc(100svw - 4px);
-    height: fit-content;
-    border: solid 1px #000;
-    border-radius: 5px;
-    padding: 2px;
-    z-index: 1;
+    top: 3.5vw;
+    display: none;
 }
 
-.health-bar {
-    width: 100%;
-    height: 1vh;
-    background: #f96d78;
-    z-index: 1;
-    border-radius: 7px;
+.add-smoke {
+    display: block;
 }
 
-.user-damage__1 {
-    width: 90%;
+.smoke-wisp__one {
+    position: absolute;
+    left: -2vw;
+    top: -8vh;;
+    width: 5vw;
+    height: 10vw;
+    margin: 0 2px 50px;
+    background: linear-gradient(to bottom, #555, #000);
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(2vw);
+    animation: wispOneAnimation 1s infinite cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.user-damage__2 {
-    width: 80%;
+@keyframes wispOneAnimation {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.25;
+    }
 }
 
-.user-damage__3 {
-    width: 70%;
+.smoke-wisp__two {
+    position: absolute;
+    left: -2vw;
+    top: -10vh;
+    width: 5vw;
+    height: 10vw;
+    margin: 0 2px 50px;
+    background: linear-gradient(to bottom, #999, #555);
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(2vw);
+    animation: wispTwoAnimation 4s infinite cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.user-damage__4 {
-    width: 60%;
+@keyframes wispTwoAnimation {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+
+    75% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
 }
 
-.user-damage__5 {
-    width: 50%;
+.smoke-wisp__three {
+    position: absolute;
+    left: -2vw;
+    top: -10vh;
+    width: 5vw;
+    height: 10vw;
+    margin: 0 2px 50px;
+    background: linear-gradient(to bottom, #bbb, #999);
+    border-radius: 50%;
+    opacity: 1;
+    filter: blur(8vw);
+    animation: wispThreeAnimation 6s infinite cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.user-damage__6 {
-    width: 40%;
+@keyframes wispThreeAnimation {
+    0% {
+        transform: scale(0.1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.25;
+    }
 }
 
-.user-damage__7 {
-    width: 30%;
+.big-smoke {
+    left: -1.5vw;
+    top: -20vh;
+    height: 30vh;
+    width: 15vw;
 }
 
-.user-damage__8 {
-    width: 20%;
+.jet-crash-animation {
+    animation: userJetCrashAnimation 4s forwards cubic-bezier(0.42, 0, 0.58, 1);
 }
 
-.user-damage__9 {
-    width: 10%;
-}
-
-.user-damage__10 {
-    width: 0%;
+@keyframes userJetCrashAnimation {
+    0% {
+        transform: rotate(0deg) scale(1);  /* Starting point */
+    }
+    20% {
+        transform: rotate(2000deg) scale(0.8);
+    }
+    40% {
+        transform: rotate(1800deg) scale(0.6);
+    }
+    60% {
+        transform: rotate(2700deg) scale(0.4);
+        z-index: 0;
+    }
+    80% {
+        transform: rotate(30deg) scale(0.2);
+    }
+    100% {
+        top: 47%;
+        left: 20%;
+        transform: rotate(4340deg) scale(0.1); /* Final position and scale */
+    }
 }
