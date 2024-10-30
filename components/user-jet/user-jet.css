@@ -14,6 +14,10 @@
     opacity: 1;
 }
 
+.jet-disappear {
+    opacity: 0;
+}
+
 @keyframes userHitAnimation {
     0% {
         opacity: 0;
@@ -125,6 +129,10 @@
     box-shadow: 0 2px 0 0 #55555580;
 }
 
+.back-wing__left--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
 .back-wing__left--down {
     border-width: 0 5vw 1vw 9vw;
     transform: rotate(-18deg);
@@ -141,6 +149,10 @@
     border-color: transparent transparent #ccc transparent;
     transform: rotate(27deg);
     box-shadow: 0 2px 0 0 #55555580;
+}
+
+.back-wing__right--hit {
+    border-color: transparent transparent #f96d78 transparent;
 }
 
 .back-wing__right--down {
@@ -165,6 +177,10 @@
     transform: rotate(0deg);
 }
 
+.body__left--hit {
+    border-color: transparent transparent #f96d78 transparent;
+}
+
 .body__right {
     /* position: absolute;
     left: 0; */
@@ -174,6 +190,10 @@
     border-width: 0 5vw 5vw 0;
     border-color: transparent transparent #ccc transparent;
     transform: rotate(0deg);
+}
+
+.body__right--hit {
+    border-color: transparent transparent #f96d78 transparent;
 }
 
 .engine {
@@ -230,7 +250,7 @@
     border-radius: 50%;
     opacity: 1;
     filter: blur(2vw);
-    animation: wispOneAnimation 1s infinite cubic-bezier(0.42, 0, 0.58, 1);
+    animation: wispOneAnimation 2s infinite cubic-bezier(0.42, 0, 0.58, 1);
 }
 
 @keyframes wispOneAnimation {

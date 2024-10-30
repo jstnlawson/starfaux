@@ -80,3 +80,28 @@ export function enemyAttackSequenceThree() {
         });
     }, { once: true });
 }
+
+export function enemyGloat() {
+    enemyJet.classList.add("enemy-gloat");
+    enemyEngine.classList.add("enemy-rear-visible");
+
+    enemyJet.addEventListener("animationstart", () => {
+        const checkpoints = [
+            
+            
+            
+            { time: 0.3, fired: false },
+            
+                      
+        ];
+
+        checkpoints.forEach(checkpoint => {
+            const duration = parseFloat(getComputedStyle(enemyJet).animationDuration) * 1000;
+            const checkpointTime = checkpoint.time * duration;
+
+            setTimeout(() => {
+                shootLaser();
+            }, checkpointTime);
+        });
+    }, { once: true });
+}

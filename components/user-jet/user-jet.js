@@ -2,7 +2,7 @@ import { enemyJet, fireUserLaser } from "../user-laser/user-laser.js";
 
 export const jet = document.getElementById("jetContainer");
 const engine = document.getElementsByClassName("engine")[0];
-const groundMovement = document.getElementsByClassName("ground-movement")[0];
+export const groundMovement = document.getElementsByClassName("ground-movement")[0];
 const nose = document.getElementsByClassName("nose")[0];
 const backWingLeft = document.getElementsByClassName("back-wing__left")[0];
 const backWingRight = document.getElementsByClassName("back-wing__right")[0];
@@ -75,6 +75,7 @@ document.addEventListener("keydown", function (event) {
     movingForward = true;
     wKey.classList.add("key-pressed");
     engine.classList.add("engine-boost");
+
     groundMovement.classList.add("ground-movement__fast");
     moveSpeed = 1.5; // Increase movement speed
   }
@@ -141,6 +142,7 @@ document.addEventListener("keyup", function (event) {
 });
 
 // Update function for smooth movement
+
 export function update() {
   // Update jet position
   if (movingLeft) {
@@ -194,13 +196,3 @@ export function update() {
 update(); // Start the update loop
 
 export let firingLaser = false;
-
-
-//Fire laser continuously while spacebar is held down and jet is moving
-export function fireUserLaserLoop() {
-  
-    if (firingLaser) {
-      fireUserLaser(); // Fire laser when the spacebar is held
-    }
-    setTimeout(fireUserLaserLoop, 1500); // Fire every 200ms
-  }

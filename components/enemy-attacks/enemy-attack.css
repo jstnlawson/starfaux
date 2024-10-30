@@ -97,3 +97,48 @@
         opacity: 0;
     }
 }
+
+.enemy-victory {
+    animation: enemyVictoryAnimation 1s forwards cubic-bezier(0.42, 0, 0.58, 1);
+    /* right: -50%; */
+}
+
+@keyframes enemyVictoryAnimation {
+    0% {
+        top: 50%;
+        right: 50%;
+        transform: scale(0) rotate(0deg);     
+    }
+
+    
+    100% {
+        top: -50%;
+        right: -50%;
+        transform: scale(2) rotate(80deg);
+    }
+
+}
+
+.enemy-gloat {
+    animation: enemyGloatAnimation 8s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes enemyGloatAnimation {
+    0% {
+        top: 60%;
+        right: -50%;
+        transform: scale(2) rotate(80deg);
+    }
+
+    35% {
+        top: 40%;
+        right: 60%;
+        transform: scale(0.25) rotate(0deg);
+    }
+
+    100% {
+        top: -20%;
+        right: 120%;
+        transform: scale(0) rotate(-45deg);
+    }
+}

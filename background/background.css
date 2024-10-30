@@ -19,12 +19,13 @@
     background-size: 100% 200%;
     background-position: 0 100%;
     /* Start from the top */
-    animation: scrollGround 1s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
+    animation: scrollGroundAnimation 1s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
 }
 
 /* I use cubic-bezier instead of "linear" because it just looks a little smoother */
 
-@keyframes scrollGround {
+
+@keyframes scrollGroundAnimation {
     0% {
         background-position: 0 100%;
         /* Start position */
@@ -38,9 +39,13 @@
 }
 
 .ground-movement__fast {
-    animation: scrollGround 0.5s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
+    animation: scrollGroundAnimation 0.5s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
 }
 
 .ground-movement__slow {
-    animation: scrollGround 2s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
+    animation: scrollGroundAnimation 2s cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
+}
+
+.ground-movement__stop {
+    animation-play-state: paused;
 }
