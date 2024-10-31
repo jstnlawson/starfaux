@@ -1,2 +1,2 @@
-# starfox-css
-My attempt to build starfox with html/css/javascript
+# starfaux-css
+My attempt to build starfox type game with html/css/javascript
