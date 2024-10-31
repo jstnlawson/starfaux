@@ -42,8 +42,8 @@ export function enemyAttackSequence() {
     if (enemyVictoryTriggered) return;
     fireball.classList.add("expand-fireball");
   }, 36000);
-  setTimeout(() => {
-    if (enemyVictoryTriggered) return;
-    jet.classList.add('jet-disappear');
-  }, 37000);
+//   setTimeout(() => {
+//     if (enemyVictoryTriggered) return;
+//     jet.classList.add('jet-disappear');
+//   }, 37000);
 }
