@@ -24,7 +24,7 @@ export function triggerEnemyVictory() {
   setTimeout(() => {
     fireball.classList.add("expand-fireball--user");
     jet.classList.add('jet-disappear');
-  }, 11000);
+  }, 11500);
 }
 
 export function enemyAttackSequence() {

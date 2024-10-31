@@ -4,5 +4,6 @@ import { enemyAttackSequence } from "./components/enemy-jet/enemy-jet.js";
 document.addEventListener("DOMContentLoaded", function () {
 
     enemyAttackSequence();
+
     
 });

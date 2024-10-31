@@ -357,3 +357,30 @@
         transform: rotate(4340deg) scale(0.1); /* Final position and scale */
     }
 }
+
+.barrel-roll__left {
+    animation: barrelRollLeftAnimation .5s infinite linear  ;
+}
+
+@keyframes barrelRollLeftAnimation {
+    0% {
+        transform: rotate(0deg) scale(0.65);
+    }
+    100% {
+        transform: rotate(-360deg) scale(0.65);
+    }
+}
+
+.barrel-roll__right {
+    animation: barrelRollRightAnimation 0.5s infinite linear;
+}
+
+@keyframes barrelRollRightAnimation {
+    0% {
+        transform: rotate(0deg) scale(0.65);
+    }
+    100% {
+        transform: rotate(360deg) scale(0.65);
+    }
+}
+

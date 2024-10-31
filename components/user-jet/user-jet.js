@@ -2,48 +2,57 @@ import { enemyJet, fireUserLaser } from "../user-laser/user-laser.js";
 
 export const jet = document.getElementById("jetContainer");
 const engine = document.getElementsByClassName("engine")[0];
-export const groundMovement = document.getElementsByClassName("ground-movement")[0];
+export const groundMovement =
+  document.getElementsByClassName("ground-movement")[0];
 const nose = document.getElementsByClassName("nose")[0];
 const backWingLeft = document.getElementsByClassName("back-wing__left")[0];
 const backWingRight = document.getElementsByClassName("back-wing__right")[0];
 const wKey = document.getElementsByClassName("w-key")[0];
 const sKey = document.getElementsByClassName("s-key")[0];
+const aKey = document.getElementsByClassName("a-key")[0];
+const dKey = document.getElementsByClassName("d-key")[0];
 const spaceKey = document.getElementsByClassName("space-key")[0];
 const upKey = document.getElementsByClassName("up-key")[0];
 const downKey = document.getElementsByClassName("down-key")[0];
 const leftKey = document.getElementsByClassName("left-key")[0];
 const rightKey = document.getElementsByClassName("right-key")[0];
 
-
 export const useJetElements = {
-    jet,
-    engine,
-    nose,
-    backWingLeft,
-    backWingRight,
-}
+  jet,
+  engine,
+  nose,
+  backWingLeft,
+  backWingRight,
+};
 
 // Initial jet position in vw units
 let jetX = 50; // Start at center (50vw)
 let jetY = 50; // Start at center (50vh)
 let moveSpeed = 0.5; // Movement speed in vw
+let rollingSpeed = 2; // Barrel roll speed in vw
 let movingLeft = false;
 let movingRight = false;
 let movingUp = false;
 let movingDown = false;
 let movingForward = false;
 let movingBackward = false;
+let barrelRollAngle = 0;
+let isBarrelRollingLeft = false;
+let isBarrelRollingRight = false;
 
 export const userJetMovement = {
-    jetX,
-    jetY,
-    moveSpeed,
-    movingLeft,
-    movingRight,
-    movingUp,
-    movingDown,
-    movingForward,
-    movingBackward,
+  jetX,
+  jetY,
+  moveSpeed,
+  movingLeft,
+  movingRight,
+  movingUp,
+  movingDown,
+  movingForward,
+  movingBackward,
+  barrelRollAngle,
+  isBarrelRollingLeft,
+  isBarrelRollingRight,
 };
 
 let fireInterval;
@@ -86,12 +95,24 @@ document.addEventListener("keydown", function (event) {
     groundMovement.classList.add("ground-movement__slow");
     moveSpeed = 0.25; // Decrease movement speed
   }
+  if (event.key === "a") {
+    console.log("Barrel roll left");
+    isBarrelRollingLeft = true;
+    jet.classList.add("barrel-roll__left");
+    aKey.classList.add("key-pressed");
+  }
+  if (event.key === "d") {
+    console.log("Barrel roll right");
+    isBarrelRollingRight = true;
+    jet.classList.add("barrel-roll__right");
+    dKey.classList.add("key-pressed");
+  }
   if (event.key === " " && !fireInterval) {
     event.preventDefault();
     spaceKey.classList.add("key-pressed");
     firingLaser = true;
     fireInterval = setInterval(() => {
-    fireUserLaser();
+      fireUserLaser();
     }, 75);
   }
 });
@@ -133,6 +154,16 @@ document.addEventListener("keyup", function (event) {
     groundMovement.classList.remove("ground-movement__slow");
     moveSpeed = 0.5; // Reset movement speed
   }
+  if (event.key === "a") {
+    isBarrelRollingLeft = false;
+    jet.classList.remove("barrel-roll__left");
+    aKey.classList.remove("key-pressed");
+  }
+  if (event.key === "d") {
+    isBarrelRollingRight = false;
+    jet.classList.remove("barrel-roll__right");
+    dKey.classList.remove("key-pressed");
+  }
   if (event.key === " ") {
     clearInterval(fireInterval);
     fireInterval = null;
@@ -144,6 +175,7 @@ document.addEventListener("keyup", function (event) {
 // Update function for smooth movement
 
 export function update() {
+  requestAnimationFrame(update); // Continue updating
   // Update jet position
   if (movingLeft) {
     jetX -= moveSpeed; // Move left
@@ -161,6 +193,16 @@ export function update() {
     jetY += moveSpeed; // Move down
     if (jetY > 100) jetY = 100; // Prevent going off the bottom
   }
+  if (isBarrelRollingLeft) {
+    jetX -= rollingSpeed; // Move left
+    if (jetX < 0) jetX = 0; // Prevent going off the left side
+  }
+  if (isBarrelRollingRight) {
+    jetX += rollingSpeed; // Move right
+    if (jetX > 100) jetX = 100; // Prevent going off the right
+  }
+
+  barrelRollAngle = barrelRollAngle %= 360; // Keep angle within 0-360
 
   // Start with default transformations
   let scale = 0.65; // Default scale
@@ -189,8 +231,6 @@ export function update() {
   jet.style.left = jetX + "vw";
   jet.style.top = jetY + "vh";
   jet.style.transform = transformString; // Set the combined transformation
-
-  requestAnimationFrame(update); // Continue updating
 }
 
 update(); // Start the update loop
