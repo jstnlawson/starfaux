@@ -32,6 +32,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 10vw;
+    font-family: monospace;
     z-index: 10;
 }
 
