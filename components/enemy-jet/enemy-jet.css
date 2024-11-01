@@ -53,6 +53,7 @@
 .enemy__body-container {
     position: absolute;
     display: flex;
+    bottom: -5vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -99,4 +100,47 @@
 
 .enemy-rear-visible {
     display: block;
+}
+
+.spin-left-wing-off-screen {
+    animation: spinLeftWingOffScreenAnimation 5s linear forwards;
+}
+
+@keyframes spinLeftWingOffScreenAnimation {
+    0% {
+        
+        transform: rotate(180deg);
+    }
+    100% {
+        left: -258vw;
+        transform: rotate(720deg) scale(6);
+    }
+}
+
+.spin-right-wing-off-screen {
+    animation: spinRightWingOffScreenAnimation 5s linear forwards;
+}
+
+@keyframes spinRightWingOffScreenAnimation {
+    0% {
+        transform: rotate(-180deg);
+    }
+    100% {
+        left: 228vw;
+        transform: rotate(-7710deg) scale(3);
+    }
+}
+
+.spin-body-off-screen {
+    animation: spinBodyOffScreenAnimation 5s linear forwards;
+}
+
+@keyframes spinBodyOffScreenAnimation {
+    0% {
+        transform: rotate(300deg);
+    }
+    100% {
+        bottom: -528vh;
+        transform: rotate(3000deg) scale(5);
+    }
 }

@@ -46,6 +46,10 @@
     animation: expandFireBallAnimation 1.25s ease-out;
 }
 
+.small-explosion {
+    animation: smallExplosionAnimation 0.75s ease-out;
+}
+
 @keyframes expandFireBallAnimation {
     0% {
         opacity: 1;
@@ -59,6 +63,21 @@
     100% {
         transform: scale(10);
         opacity: 0;
+    }
+}
+
+@keyframes smallExplosionAnimation {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
 

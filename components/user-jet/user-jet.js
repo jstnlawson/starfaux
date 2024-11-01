@@ -113,7 +113,7 @@ document.addEventListener("keydown", function (event) {
     firingLaser = true;
     fireInterval = setInterval(() => {
       fireUserLaser();
-    }, 75);
+    }, 65);
   }
 });
 

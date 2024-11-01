@@ -47,6 +47,7 @@ export function shootLaser() {
         easing: 'linear',
         fill: 'forwards',
     });
+    
 
     const userBody = [
         jet.querySelector(".body__left"),
@@ -62,13 +63,13 @@ export function shootLaser() {
       
         // Check for overlaps with each inner element
         for (const element of elementsToCheck) {
+
             const elementRect = element.getBoundingClientRect();
             
             if (isColliding(laserRect, elementRect)) {
                 // Dispatch a hit event
                 document.dispatchEvent(new CustomEvent("laserHit"));
     
-                // Add specific hit class based on the element
                 if (element === userBody[0]) {
                     element.classList.add("body__left--hit");
                 } else if (element === userBody[1]) {
@@ -78,6 +79,7 @@ export function shootLaser() {
                 } else if (element === rightWing) {
                     element.classList.add("back-wing__right--hit");
                 }
+            
     
                 // Remove laser, clear interval
                 newLaser.remove();
@@ -112,18 +114,33 @@ document.addEventListener("laserHit", () => {
     const smokeWispTwo = document.querySelector(".smoke-wisp__two");
     const smokeWispThree = document.querySelector(".smoke-wisp__three");
     const groundMovement = document.querySelector(".ground-movement");
+    const shieldBar = document.querySelector(".shield-bar");
+    const healthBar = document.querySelector(".health-bar");
+    const shield = document.querySelector(".shield");
     hitCounter++;
     console.log("Hit Counter:", hitCounter);
 
-    // Handle visual changes for the health bar
-    const healthBar = document.querySelector(".health-bar");
-    healthBar.classList.add(`user-damage__${hitCounter}`);
+    // hits 1 to 5 decrease shield bar
 
-    if (hitCounter >= 7) {
+    if (hitCounter <= 5) {
+        shieldBar.classList.add(`shield-damage__${hitCounter}`);
+        shield.classList.add("shield--visible");
+        setTimeout(() => {
+            shield.classList.remove("shield--visible");
+        }, 250);
+    }
+    
+    // hits 6 to 15 decrease health bar
+
+    if (hitCounter >= 6) {
+        healthBar.classList.add(`user-damage__${hitCounter}`);
+    }
+
+    if (hitCounter >= 12) {
         smoke.classList.add("add-smoke");
     }
 
-    if (hitCounter >= 10 && !enemyVictoryTriggered) {
+    if (hitCounter >= 15 && !enemyVictoryTriggered) {
         jet.classList.add("jet-crash-animation");
         smokeWispOne.classList.add("big-smoke");
         smokeWispTwo.classList.add("big-smoke");

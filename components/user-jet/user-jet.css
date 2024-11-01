@@ -1,3 +1,5 @@
+
+
 .jet-container {
     display: flex;
     justify-content: center;
@@ -51,6 +53,26 @@
         opacity: 1;
     }
 
+}
+
+.shield {
+    position: absolute;
+    top: -75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #462ecd46;
+    background: linear-gradient(to right, transparent,  #a69aea8d, transparent);
+    border-radius: 50%;
+    width: 40vw;
+    height: 20vw;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 5;
+}
+
+.shield--visible {
+    opacity: 1;
 }
 
 .user-hit {

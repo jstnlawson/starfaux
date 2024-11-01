@@ -138,61 +138,91 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
-    width: calc(100svw - 12px);
-    height: fit-content;
+    width: calc(100svw - 2vw);
+    height: 3vh;
     border: solid 1px #ffffff50;
-    border-radius: calc(1vw + 4px);
-    padding: 2px;
-    margin: 5px;
+    border-radius: 1.5vw;
+    padding: .25vw;
+    margin: 1vw;
     z-index: 5;
 }
 
-.health-bar {
-    width: 100%;
-    height: 2vh;
-    background: #f96d7890;
-    z-index: 1;
+.shield-bar {
+    position: absolute;
+    width: 100svw;
+    width: calc(100svw - 2vw);
+    height: 3vh;
+    background: #462ecd90;
     border-radius: 1vw;
 }
 
-.user-damage__1 {
-    width: 90%;
+.shield-damage__1 {
+    width: 80svw;
 }
 
-.user-damage__2 {
-    width: 80%;
+.shield-damage__2 {
+    width: 60svw;
 }
 
-.user-damage__3 {
-    width: 70%;
+.shield-damage__3 {
+    width: 40svw;
 }
 
-.user-damage__4 {
-    width: 60%;
+.shield-damage__4 {
+    width: 20svw;
 }
 
-.user-damage__5 {
-    width: 50%;
+.shield-damage__5 {
+    width: 0svw;
+}
+
+.health-bar {
+    position: absolute;
+    width: calc(100svw - 3vw);
+    height: 1.75vh;
+    background: #f96d7890;
+    border-radius: 1vw;
+    margin: 0.5vw;
 }
 
 .user-damage__6 {
-    width: 40%;
+    width: 90svw;
 }
 
 .user-damage__7 {
-    width: 30%;
+    width: 80svw;
 }
 
 .user-damage__8 {
-    width: 20%;
+    width: 70svw;
 }
 
 .user-damage__9 {
-    width: 10%;
+    width: 60svw;
 }
 
 .user-damage__10 {
-    width: 0%;
+    width: 50svw;
+}
+
+.user-damage__11 {
+    width: 40svw;
+}
+
+.user-damage__12 {
+    width: 30svw;
+}
+
+.user-damage__13 {
+    width: 20svw;
+}
+
+.user-damage__14 {
+    width: 10svw;
+}
+
+.user-damage__15 {
+    width: 0svw;
 }
 
 .enemy-health {

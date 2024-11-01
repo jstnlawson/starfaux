@@ -1,6 +1,17 @@
 export const enemyJet = document.getElementsByClassName("enemy-jet")[0];
+  const wings = [
+    enemyJet.querySelector(".enemy__left-wing"),
+    enemyJet.querySelector(".enemy__right-wing"),
+  ];
+  const body = enemyJet.querySelector(".enemy__body-container");
+  const leftWing = enemyJet.querySelector(".enemy__left-wing");
+  const rightWing = enemyJet.querySelector(".enemy__right-wing");
+  const bodyTop = enemyJet.querySelector(".enemy__body__top");
+  const bodyBottom = enemyJet.querySelector(".enemy__body__bottom");
+  const fireBall = document.querySelector(".fireball");
 
 export let lastLaserLeft = true; // Track the last side fired from
+export let userVictoryTrigged = false;
 
 export function fireUserLaser(event = null) {
   if (event) {
@@ -68,16 +79,6 @@ export function fireUserLaser(event = null) {
   // Toggle the side for the next laser
   lastLaserLeft = !lastLaserLeft;
 
-  // // Get all child elements of enemyJet
-  const wings = [
-    enemyJet.querySelector(".enemy__left-wing"),
-    enemyJet.querySelector(".enemy__right-wing"),
-  ];
-  const leftWing = enemyJet.querySelector(".enemy__left-wing");
-  const rightWing = enemyJet.querySelector(".enemy__right-wing");
-  const bodyTop = enemyJet.querySelector(".enemy__body__top");
-  const bodyBottom = enemyJet.querySelector(".enemy__body__bottom");
-
   // // Combine all elements for hit detection
   const elementsToCheck = [...wings, bodyTop, bodyBottom];
 
@@ -119,7 +120,18 @@ document.addEventListener("enemyHit", () => {
   // Handle visual changes for the health bar
   const enemyHealthBar = document.querySelector(".enemy-health--bar");
   enemyHealthBar.classList.add(`enemy-health__${enemyHitCounter}`);
+
+  if (enemyHitCounter === 100) {
+    userVictoryTrigged = true;
+    fireBall.classList.add("small-explosion");
+    bodyTop.classList.add("spin-body-off-screen");
+    body.classList.add("spin-body-off-screen");
+    leftWing.classList.add("spin-left-wing-off-screen");
+    rightWing.classList.add("spin-right-wing-off-screen");
+  }
 });
+
+
 
 // Function to check if two rectangles overlap
 export function isOverlapping(rect1, rect2) {
