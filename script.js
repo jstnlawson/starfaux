@@ -5,6 +5,7 @@ import {
 } from "./components/user-jet/user-jet.js";
 import { enemyAttackSequence } from "./components/enemy-jet/enemy-jet.js";
 
+
 document.addEventListener("DOMContentLoaded", function () {
 
   const startButton = document.querySelector(".start-button");
@@ -19,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     startButton.style.display = "none";
     enemyAttackSequence();
     playAudio();
+    
   });
-  
+
 });
