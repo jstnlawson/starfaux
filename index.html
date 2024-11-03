@@ -8,18 +8,59 @@
   </head>
   <body>
     <div class="game-container" id="gameContainer">
-      <canvas id="gameCanvas" class="game-canvas"></canvas>
-      <!-- <div class="fireworks">
-        <div class="firework-one"></div>
-        <div class="firework-two"></div>
-        <div class="firework-three"></div>
-        <div class="firework-four"></div>
-        <div class="firework-five"></div>
-        <div class="firework-six"></div>
-        <div class="firework-seven"></div>
-        <div class="firework-eight"></div>
-      </div> -->
-      <div class="start-button">start</div>
+      <!-- <canvas id="gameCanvas" class="game-canvas"></canvas> -->
+
+      <div class="start-screen">
+        <button class="start-button">start</button>
+            <table class="controls-menu">
+                <tr>
+                    <th>key</th>
+                    <th>action</th>
+                </tr>
+                <tr>
+                    <td>w</td>
+                    <td>increase speed</td>
+                </tr>
+                <tr>
+                    <td>a</td>
+                    <td>roll left</td>
+                </tr>
+                <tr>
+                    <td>s</td>
+                    <td>decrease speed</td>
+                </tr>
+                <tr>
+                    <td>d</td>
+                    <td>roll right</td>
+                </tr>
+                <tr>
+                    <td>space</td>
+                    <td>fire</td>
+                </tr>
+                <tr>
+                    <td>up-arrow</td>
+                    <td>move up</td>
+                </tr>
+                <tr>
+                    <td>down-arrow</td>
+                    <td>move down</td>
+                </tr>
+                <tr>
+                    <td>left-arrow</td>
+                    <td>move left</td>
+                </tr>
+                <tr>
+                    <td>right-arrow</td>
+                    <td>move right</td>
+                </tr>
+                <tr>
+                    <td class="close-menu--td"><span class="close-menu">close</span></td>
+                </tr>
+            </table>
+            <span class="controls-menu__title">controls</span>
+        </div>
+      </div>
+      
       <div class="ground-movement"></div>
       <div class="enemy-health">
         <div class="enemy-health--bar" id="enemyHealthBar"></div>
@@ -74,16 +115,24 @@
             </div>
           </div>
           <div class="control__middle">
-            <div class="space-key">fire</div>
+            <div class="space-key">space</div>
           </div>
           <div class="control__right">
             <div class="control__right--top">
-              <div class="up-key">up</div>
+              <div class="up-key">
+                <div class="arrow--up"></div>
+              </div>
             </div>
             <div class="control__right--bottom">
-              <div class="left-key">left</div>
-              <div class="down-key">down</div>
-              <div class="right-key">right</div>
+              <div class="left-key">
+                <div class="arrow--left"></div>
+              </div>
+              <div class="down-key">
+                <div class="arrow--down"></div>
+              </div>
+              <div class="right-key">
+                <div class="arrow--right"></div>
+              </div>
             </div>
           </div>
         </div>
