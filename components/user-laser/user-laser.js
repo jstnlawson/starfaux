@@ -129,7 +129,10 @@ document.addEventListener("enemyHit", () => {
     body.classList.add("spin-body-off-screen");
     leftWing.classList.add("spin-left-wing-off-screen");
     rightWing.classList.add("spin-right-wing-off-screen");
-    startRandomFireworks();
+    setTimeout(() => {
+      startRandomFireworks();
+    }, 1000);
+    
   }
 });
 

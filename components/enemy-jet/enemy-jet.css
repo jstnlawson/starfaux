@@ -19,8 +19,8 @@
 
 .enemy__left-wing {
     position: absolute;
-    left: -28vw;
-    top: -0.5vw;
+    left: -27vw;
+    top: -5.5vw;
     width: 0px;
     height: 0px;
     border-style: solid;
@@ -36,8 +36,8 @@
 
 .enemy__right-wing {
     position: absolute;
-    left: 8vw;
-    top: -0.5vw;
+    left: 7vw;
+    top: -5.5vw;
     width: 0px;
     height: 0px;
     border-style: solid;
@@ -53,10 +53,11 @@
 .enemy__body-container {
     position: absolute;
     display: flex;
-    bottom: -5vh;
+    bottom: 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .enemy__body__top {

@@ -12,7 +12,6 @@ import { userVictoryTrigged } from "../user-laser/user-laser.js";
 const fireball = document.getElementsByClassName("fireball")[0];
 
 export let enemyVictoryTriggered = false;
-//export let stopEnemyAttackSequence = false;
 
 export function triggerEnemyVictory() {
   console.log("Enemy victory triggered");
@@ -42,10 +41,4 @@ export function enemyAttackSequence() {
     if (userVictoryTrigged) return;
     enemyAttackSequenceThree();
   }, 27000);
-  setTimeout(() => {
-    if (enemyVictoryTriggered) return;
-    if (userVictoryTrigged) return;
-    fireball.classList.add("expand-fireball");
-    jet.classList.add("jet-disappear");
-  }, 36000);
 }
