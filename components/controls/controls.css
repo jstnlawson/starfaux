@@ -139,9 +139,9 @@
     justify-content: flex-start;
     align-items: flex-start;
     width: calc(100svw - 2vw);
-    height: 3vh;
+    height: 3vw;
     border: solid 1px #ffffff50;
-    border-radius: 1.5vw;
+    border-radius: 2vw;
     padding: .25vw;
     margin: 1vw;
     z-index: 5;
@@ -151,9 +151,9 @@
     position: absolute;
     width: 100svw;
     width: calc(100svw - 2vw);
-    height: 3vh;
+    height: 3vw;
     background: #462ecd90;
-    border-radius: 1vw;
+    border-radius: 1.5vw;
 }
 
 .shield-damage__1 {
@@ -179,7 +179,7 @@
 .health-bar {
     position: absolute;
     width: calc(100svw - 3vw);
-    height: 1.75vh;
+    height: 2vw;
     background: #f96d7890;
     border-radius: 1vw;
     margin: 0.5vw;
