@@ -1,8 +1,10 @@
 import {
+    jet,
   userJetMovement,
   update,
   useJetElements,
 } from "./components/user-jet/user-jet.js";
+import { enemyJet } from "./components/enemy-attacks/enemy-attacks.js";
 import { enemyAttackSequence } from "./components/enemy-jet/enemy-jet.js";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -31,9 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   startButton.addEventListener("click", () => {
+    enemyJet.style.display = "none";
     startScreen.style.display = "none";
     groundMovement.style.display = "block";
-    enemyAttackSequence();
+    jet.classList.add("user-entrance");
+    setTimeout(() => {
+        enemyJet.style.display = "flex";
+      jet.classList.remove("user-entrance");
+      enemyAttackSequence();
+    }, 4000);
+    
     playAudio();
   });
 });

@@ -7,13 +7,30 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%) scale(0.5);
+    transform: translate(-50%, -50%) scale(0.65);
     display: flex;
     width: fit-content;
     height: fit-content;
     transition: transform 0.3s ease;
     z-index: 2;
     opacity: 1;
+}
+
+.user-entrance {
+    animation: userEntranceAnimation 4s forwards cubic-bezier(0.42, 0, 0.58, 1);
+}
+
+@keyframes userEntranceAnimation {
+    0% {
+        top: -90%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(5);
+    }
+    100% {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.65);
+    }
 }
 
 .jet-disappear {
@@ -405,4 +422,3 @@
         transform: rotate(360deg) scale(0.65);
     }
 }
-
