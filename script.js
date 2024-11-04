@@ -34,7 +34,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   startButton.addEventListener("click", () => {
     enemyJet.style.display = "none";
-    startScreen.style.display = "none";
+    startScreen.style.opacity = "0";
+    setTimeout(() => {
+      startScreen.style.display = "none";
+    }, 1000);
     groundMovement.style.display = "block";
     jet.classList.add("user-entrance");
     setTimeout(() => {

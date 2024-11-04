@@ -16,12 +16,18 @@ body {
     overflow: hidden;
 }
 
+.start-screen {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+}
+
 table {
     display: none;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    min-height: 30vh;
     width: 40vw;
     background: #000000;
     color: #ffffffb9;
